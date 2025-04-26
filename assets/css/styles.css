@@ -1,0 +1,34 @@
+/* Formatações gerais */
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: #150A35;
+}
+
+/* Cabeçalho */
+
+header img {
+    width: 50%;
+}
+
+/* Corpo/Conteúdo principal */
+
+main {
+    background-color: #1E0E45;
+}
+
+/* Barra lateral */
+
+aside {
+        width: 20%;
+}
+
+aside div {
+    background-color: #1E0E45;
+}
