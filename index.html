@@ -20,25 +20,54 @@
             <img src="assets/img/logo.png">
             <div>Time Works</div>
         </div>
+
+        <nav class="d-flex">
+            <button id="avancar">Avançar</button>
+            <p id="mesAtual"></p>
+            <button id="voltar">Voltar</button>
+            <button id="hoje">Hoje</button>
+        </nav>
+
     </header>
 
     <div class="flex-grow-1 d-flex">
 
         <aside class="p-3">
-            <div class="p-2 rounded">
+            <div class="p-2 rounded text-white">
                 Tarefas concluídas em sequência:
             </div>
 
-            <div class="p-2 my-2 rounded">
+            <div class="p-2 my-2 rounded text-white">
                 Tarefas com prioridade: "Muito alta"
             </div>
         </aside>
 
         <!-- Dentro da main alternaremos a visualização dos calendários mensais, semanais, diário e To do list-->
 
-        <main class="flex-grow-1 p-3 m-2 rounded">
-            Main<br>alternaremos a visualização dos calendários mensais, semanais, diário e To do list
+        <main class="d-flex flex-grow-1 p-2 m-2 rounded flex-column">
+
+            <div>
+
+                <div id="cabecalhoCalendario">
+                    <div class="cardCabecalhoCalendario">Dom.</div>
+                    <div class="cardCabecalhoCalendario">Seg.</div>
+                    <div class="cardCabecalhoCalendario">Ter.</div>
+                    <div class="cardCabecalhoCalendario">Quar.</div>
+                    <div class="cardCabecalhoCalendario">Qui.</div>
+                    <div class="cardCabecalhoCalendario">Sex.</div>
+                    <div class="cardCabecalhoCalendario">Sáb.</div>
+                </div>
+
+            </div>
+
+            <div id="canvaCalendario">
+
+
+            </div>
+
         </main>
 
     </div>
+
+    <script src="assets/js/script.js"></script>
 </body>
