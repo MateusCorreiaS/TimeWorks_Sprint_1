@@ -16,6 +16,26 @@ header img {
     width: 50%;
 }
 
+nav button {
+    border-radius: 15px;
+    font-size: 50px;
+    background-color: transparent;
+    border: 0;
+}
+
+nav button:nth-last-child(1) {
+    border-radius: 15px;
+    font-size: 30px;
+    padding: 15px;
+}
+
+nav p {
+    width: 100px;
+    text-align: center;
+    margin: auto;
+    font-size: larger;
+}
+
 /* Corpo/Conteúdo principal */
 
 main {
@@ -26,6 +46,7 @@ main {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6,1fr);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     overflow: hidden;
