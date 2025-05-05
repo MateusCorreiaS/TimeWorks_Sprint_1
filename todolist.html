@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Time Works - To Do List</title>
+    <link rel="stylesheet" href="todolist.css">
+</head>
+
+<body>
+
+    <div class="divider-vertical"></div>
+
+
+    <header class="header">
+        <img class="avatar" src="assets/img/man.png">
+        <img class="logo" src="assets/img/logo.png">
+        <button class="btn-add">Adicionar</button>
+        <div class="toggle" onclick="toggleSwitch(this)"></div>
+    </header>
+
+    <hr class="divider">
+
+    <div id="todolist"></div>
+
+    <script>
+        function toggleSwitch(elem) {
+            elem.classList.toggle('active');
+            window.location.href = "index.html";
+        }
+    </script>
+    <script src="todolist.js"></script>
+</body>
+
+</html>
