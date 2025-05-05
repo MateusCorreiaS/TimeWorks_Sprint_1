@@ -27,10 +27,12 @@ dialog {
     display: inline-flex;
     justify-content: flex-start;
 }
-#menu p {
+#menu .menutxt {
     margin: 0px;
     margin-top: 50px;
     font-size: 20px;
+    display: inline-flex;
+    justify-content: flex-start;
 
 }
 

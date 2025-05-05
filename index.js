@@ -9,3 +9,6 @@ const buttonClose = modal.querySelector("button");
 buttonClose.onclick = function () {
   modal.close();
 }
+
+
+
