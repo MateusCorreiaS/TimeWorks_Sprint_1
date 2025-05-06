@@ -13,32 +13,102 @@
     <title>Time Works</title>
 </head>
 
-<body class="d-flex flex-column vh-100 m-0">
+<body class="d-flex flex-column vh-100 m-0 ">
 
-    <header class="d-flex text-white p-3">
+    <header class="d-flex text-white p-2 align-items-center ">
         <div class="d-flex">
             <img src="assets/img/logo.png">
             <div>Time Works</div>
         </div>
+
+        <nav class="d-flex gap-2 h-100">
+            <button class="text-white" id="voltar"><</button>
+            <p id="mesAtual"></p>
+            <button class="text-white" id="avancar">></button>
+            <button class="text-white " id="hoje">Hoje</button>
+        </nav>
+
+        <div class="d-flex flex-column gap-1 ms-1 h-100">
+            <button class="text-white" id="botaoCalendarioMes">Mês</button>
+            <button class="text-white" id="botaoCalendarioSemanal">Semana</button>
+            <button class="text-white" id="botaoCalendarioDia">Dia</button>
+        </div>
+        
     </header>
 
     <div class="flex-grow-1 d-flex">
 
         <aside class="p-3">
-            <div class="p-2 rounded">
+            <div class="p-2 rounded text-white">
                 Tarefas concluídas em sequência:
             </div>
 
-            <div class="p-2 my-2 rounded">
+            <div class="p-2 my-2 rounded text-white">
                 Tarefas com prioridade: "Muito alta"
             </div>
         </aside>
 
         <!-- Dentro da main alternaremos a visualização dos calendários mensais, semanais, diário e To do list-->
 
-        <main class="flex-grow-1 p-3 m-2 rounded">
-            Main<br>alternaremos a visualização dos calendários mensais, semanais, diário e To do list
+        <main class="d-flex flex-grow-1 p-2 m-2 rounded flex-column">
+
+            <div>
+
+                <div id="cabecalhoCalendario">
+                    <div class="cardCabecalhoCalendario">Dom.</div>
+                    <div class="cardCabecalhoCalendario">Seg.</div>
+                    <div class="cardCabecalhoCalendario">Ter.</div>
+                    <div class="cardCabecalhoCalendario">Qua.</div>
+                    <div class="cardCabecalhoCalendario">Qui.</div>
+                    <div class="cardCabecalhoCalendario">Sex.</div>
+                    <div class="cardCabecalhoCalendario">Sáb.</div>
+                </div>
+
+            </div>
+
+            <div id="canvaCalendario">
+
+
+            </div>
+
         </main>
 
     </div>
+
+    <script src="assets/js/script.js"></script>
+
+    <!-- Modal para adicionar tarefa -->
+<div class="modal fade" id="modalTarefa" tabindex="-1" aria-labelledby="modalTarefaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTarefaLabel">Adicionar Tarefa</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formTarefa">
+            <input type="hidden" id="dataSelecionada" name="dataSelecionada">
+            <div class="mb-3">
+              <label for="tituloTarefa" class="form-label">Título</label>
+              <input type="text" class="form-control" id="tituloTarefa" required>
+            </div>
+            <div class="mb-3">
+              <label for="descricaoTarefa" class="form-label">Descrição</label>
+              <textarea class="form-control" id="descricaoTarefa"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="prioridadeTarefa" class="form-label">Prioridade</label>
+              <select class="form-select" id="prioridadeTarefa" required>
+                <option value="baixa">Baixa</option>
+                <option value="media">Média</option>
+                <option value="alta">Alta</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">Salvar Tarefa</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </body>
