@@ -13,24 +13,26 @@
     <title>Time Works</title>
 </head>
 
-<body class="d-flex flex-column vh-100 m-0">
+<body class="d-flex flex-column vh-100 m-0 ">
 
-    <header class="d-flex text-white p-3">
+    <header class="d-flex text-white p-2 align-items-center ">
         <div class="d-flex">
             <img src="assets/img/logo.png">
             <div>Time Works</div>
         </div>
 
-        <nav class="d-flex flex gap-2">
+        <nav class="d-flex gap-2 h-100">
             <button class="text-white" id="voltar"><</button>
             <p id="mesAtual"></p>
             <button class="text-white" id="avancar">></button>
-            <button class="text-white" id="hoje">Hoje</button>
+            <button class="text-white " id="hoje">Hoje</button>
         </nav>
 
-        <button id="botaoCalendarioMes">Mês</button>
-        <button id="botaoCalendarioSemanal">Semana</button>
-        <button id="botaoCalendarioDia">Dia</button>
+        <div class="d-flex flex-column gap-1 ms-1 h-100">
+            <button class="text-white" id="botaoCalendarioMes">Mês</button>
+            <button class="text-white" id="botaoCalendarioSemanal">Semana</button>
+            <button class="text-white" id="botaoCalendarioDia">Dia</button>
+        </div>
         
     </header>
 
