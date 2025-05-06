@@ -36,7 +36,12 @@ nav p {
     font-size: larger;
 }
 
+.esconderBotao {
+    display: none !important;
+}
+
 /* Corpo/Conteúdo principal */
+
 
 main {
     background-color: #1E0E45;
