@@ -2,83 +2,83 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <title>Time Works</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <title>Time Works</title>
 </head>
 
 <body class="d-flex flex-column vh-100 m-0 ">
 
-    <header class="d-flex text-white p-2 align-items-center ">
-        <div class="d-flex">
-            <img src="assets/img/logo.png">
-            <div>Time Works</div>
-        </div>
-
-        <nav class="d-flex gap-2 h-100">
-            <button class="text-white" id="voltar"><</button>
-            <p id="mesAtual"></p>
-            <button class="text-white" id="avancar">></button>
-            <button class="text-white " id="hoje">Hoje</button>
-        </nav>
-
-        <div class="d-flex flex-column gap-1 ms-1 h-100">
-            <button class="text-white" id="botaoCalendarioMes">Mês</button>
-            <button class="text-white" id="botaoCalendarioSemanal">Semana</button>
-            <button class="text-white" id="botaoCalendarioDia">Dia</button>
-        </div>
-        
-    </header>
-
-    <div class="flex-grow-1 d-flex">
-
-        <aside class="p-3">
-            <div class="p-2 rounded text-white">
-                Tarefas concluídas em sequência:
-            </div>
-
-            <div class="p-2 my-2 rounded text-white">
-                Tarefas com prioridade: "Muito alta"
-            </div>
-        </aside>
-
-        <!-- Dentro da main alternaremos a visualização dos calendários mensais, semanais, diário e To do list-->
-
-        <main class="d-flex flex-grow-1 p-2 m-2 rounded flex-column">
-
-            <div>
-
-                <div id="cabecalhoCalendario">
-                    <div class="cardCabecalhoCalendario">Dom.</div>
-                    <div class="cardCabecalhoCalendario">Seg.</div>
-                    <div class="cardCabecalhoCalendario">Ter.</div>
-                    <div class="cardCabecalhoCalendario">Qua.</div>
-                    <div class="cardCabecalhoCalendario">Qui.</div>
-                    <div class="cardCabecalhoCalendario">Sex.</div>
-                    <div class="cardCabecalhoCalendario">Sáb.</div>
-                </div>
-
-            </div>
-
-            <div id="canvaCalendario">
-
-
-            </div>
-
-        </main>
-
+  <header class="d-flex text-white p-2 align-items-center ">
+    <div class="d-flex">
+      <img src="assets/img/logo.png">
+      <div>Time Works</div>
     </div>
 
-    <script src="assets/js/script.js"></script>
+    <nav class="d-flex gap-2 h-100">
+      <button class="text-white" id="voltar">&lt;</button>
+          <p id="mesAtual"></p>
+          <button class="text-white" id="avancar">></button>
+          <button class="text-white " id="hoje">Hoje</button>
+    </nav>
 
-    <!-- Modal para adicionar tarefa -->
-<div class="modal fade" id="modalTarefa" tabindex="-1" aria-labelledby="modalTarefaLabel" aria-hidden="true">
+    <div class="d-flex flex-column gap-1 ms-1 h-100">
+      <button class="text-white" id="botaoCalendarioMes">Mês</button>
+      <button class="text-white" id="botaoCalendarioSemanal">Semana</button>
+      <button class="text-white" id="botaoCalendarioDia">Dia</button>
+    </div>
+
+  </header>
+
+  <div class="flex-grow-1 d-flex">
+
+    <aside class="p-3">
+      <div class="p-2 rounded text-white">
+        Tarefas concluídas em sequência:
+      </div>
+
+      <div class="p-2 my-2 rounded text-white">
+        Tarefas com prioridade: "Muito alta"
+      </div>
+    </aside>
+
+    <!-- Dentro da main alternaremos a visualização dos calendários mensais, semanais, diário e To do list-->
+
+    <main class="d-flex flex-grow-1 p-2 m-2 rounded flex-column">
+
+      <div>
+
+        <div id="cabecalhoCalendario">
+          <div class="cardCabecalhoCalendario">Dom.</div>
+          <div class="cardCabecalhoCalendario">Seg.</div>
+          <div class="cardCabecalhoCalendario">Ter.</div>
+          <div class="cardCabecalhoCalendario">Qua.</div>
+          <div class="cardCabecalhoCalendario">Qui.</div>
+          <div class="cardCabecalhoCalendario">Sex.</div>
+          <div class="cardCabecalhoCalendario">Sáb.</div>
+        </div>
+
+      </div>
+
+      <div id="canvaCalendario">
+
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="assets/js/script.js"></script>
+
+  <!-- Modal para adicionar tarefa -->
+  <div class="modal fade" id="modalTarefa" tabindex="-1" aria-labelledby="modalTarefaLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content bg-dark text-white">
         <div class="modal-header">
@@ -86,6 +86,8 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body">
+
+          <!-- form começa aqui -->
           <form id="formTarefa">
             <input type="hidden" id="dataSelecionada" name="dataSelecionada">
             <div class="mb-3">
@@ -99,16 +101,18 @@
             <div class="mb-3">
               <label for="prioridadeTarefa" class="form-label">Prioridade</label>
               <select class="form-select" id="prioridadeTarefa" required>
+                <option value="baixa">Muito baixa</option>
                 <option value="baixa">Baixa</option>
                 <option value="media">Média</option>
                 <option value="alta">Alta</option>
+                <option value="alta">Muito alta</option>
               </select>
             </div>
             <button type="submit" class="btn btn-success">Salvar Tarefa</button>
           </form>
+
         </div>
       </div>
     </div>
   </div>
-  
 </body>

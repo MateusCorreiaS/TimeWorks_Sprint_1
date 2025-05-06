@@ -62,6 +62,7 @@ function loadCalendarioMensal() {
         proximoMes.innerHTML = `<div style="color: gray">${i + 1}</div>`
         blocosCalendario.appendChild(proximoMes);
     }
+    adicionarEventosDiasCalendario()
 }
 
 function loadCalendarioSemanal() {
@@ -101,6 +102,7 @@ function loadCalendarioSemanal() {
         `;
         blocosCalendario.appendChild(div);
     }
+    adicionarEventosDiasCalendario()
 }
 
 /* MANTER OU NAO MANTER A VISUALIZAÇÃO POR DIA??? */
@@ -213,7 +215,9 @@ let tarefas = {}; // Armazenamento simples no JS por enquanto
 // Adiciona evento de clique nos dias após o calendário ser carregado
 function adicionarEventosDiasCalendario() {
     document.querySelectorAll(".cardDiaCalendario").forEach((diaElemento, index) => {
+
         diaElemento.addEventListener("click", () => {
+            
             const dia = diaElemento.innerText.trim();
             const mes = dataAtualCalendario.getMonth() + 1;
             const ano = dataAtualCalendario.getFullYear();
