@@ -26,6 +26,9 @@ function loadCalendarioMensal() {
 
     let difDiasProxMes = 42 - quantidadeDiasMesAtual - primerioDiaMes;
 
+    blocosCalendario.style.gridTemplateColumns = "repeat(7, 1fr)";
+    blocosCalendario.style.gridTemplateRows = "repeat(6, 1fr)";
+
     for (let i = primerioDiaMes - 1; i >= 0; i--) {
         let diaAnterior = document.createElement('div');
         diaAnterior.classList.add('cardDiaCalendario');
@@ -84,6 +87,9 @@ function loadCalendarioSemanal() {
 
         let div = document.createElement("div");
         div.classList.add("cardDiaCalendario");
+
+        blocosCalendario.style.gridTemplateColumns = "repeat(7, 1fr)";
+        blocosCalendario.style.gridTemplateRows = "1fr";
 
         div.innerHTML = `
             <div style="
@@ -148,20 +154,20 @@ document.getElementById("hoje").addEventListener("click", () => {
 
 document.getElementById("avancar").addEventListener("click", () => {
     if (modoVisualizacao === "semana") {
-        dataAtualCalendario.setDate(dataAtualCalendario.getDate() + 7); 
+        dataAtualCalendario.setDate(dataAtualCalendario.getDate() + 7);
     } else if (modoVisualizacao === "dia") {
-        dataAtualCalendario.setDate(dataAtualCalendario.getDate() + 1); 
+        dataAtualCalendario.setDate(dataAtualCalendario.getDate() + 1);
     } else {
-        dataAtualCalendario.setMonth(dataAtualCalendario.getMonth() + 1); 
+        dataAtualCalendario.setMonth(dataAtualCalendario.getMonth() + 1);
     }
     atualizarCalendario();
 });
 
 document.getElementById("voltar").addEventListener("click", () => {
     if (modoVisualizacao === "semana") {
-        dataAtualCalendario.setDate(dataAtualCalendario.getDate() - 7); 
+        dataAtualCalendario.setDate(dataAtualCalendario.getDate() - 7);
     } else if (modoVisualizacao === "dia") {
-        dataAtualCalendario.setDate(dataAtualCalendario.getDate() - 1); 
+        dataAtualCalendario.setDate(dataAtualCalendario.getDate() - 1);
     } else {
         dataAtualCalendario.setMonth(dataAtualCalendario.getMonth() - 1);
     }
