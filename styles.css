@@ -20,6 +20,8 @@ dialog {
     height: 250px;
     border: 2px solid black;
     border-radius: 10px;
+    position: relative; /* Para posicionamento absoluto dos filhos */
+    padding-bottom: 10px; /* Espaço para os cards */
 }
 
 #menu {
@@ -27,20 +29,24 @@ dialog {
     display: inline-flex;
     justify-content: flex-start;
 }
-#menu .menutxt {
-    margin: 0px;
-    margin-top: 50px;
-    font-size: 20px;
-    display: inline-flex;
-    justify-content: flex-start;
-
+/* Estilo para a área de informações do usuário */
+.menutxt {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px !important;
 }
 
+/* Container do botão de fechar */
 #alinharbotaoclose {
-    margin-left: auto;
-    margin-right: 0px;
-    margin-top: 0px;
-
+    display: flex;
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
+    width: 100%;
+    padding: 20px;
+    position: absolute; /* Posicionamento absoluto */
+    top: 0;
+    right: 0;
 }
 
 .imgperfil {
@@ -89,4 +95,10 @@ dialog {
 .buttonclose:hover {
     scale: 1.15;
     transition: 0.2s;
+}
+
+/* Remove margens extras */
+.userid, .username, .userlevel {
+    margin: 0;
+    white-space: nowrap;
 }
