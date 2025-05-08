@@ -1,7 +1,10 @@
 /* Função que usei para carregar o calendário sempre que o HTML for carregado. */
 
 let modoVisualizacao = "mes";
-document.addEventListener("DOMContentLoaded", loadCalendarioMensal)
+document.addEventListener("DOMContentLoaded", () => {
+    atualizarCalendario(); 
+});
+
 atualizarBotaoCalendario(modoVisualizacao);
 let dataAtualCalendario = new Date();
 
@@ -32,7 +35,7 @@ function loadCalendarioMensal() {
     for (let i = primerioDiaMes - 1; i >= 0; i--) {
         let diaAnterior = document.createElement('div');
         diaAnterior.classList.add('cardDiaCalendario');
-        diaAnterior.innerHTML = `<div style="color: gray">${diasMesAnterior - i}</div>`;
+        diaAnterior.innerHTML = `<div style="color: gray; width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; font-size: 12px;">${diasMesAnterior - i}</div>`;
         blocosCalendario.appendChild(diaAnterior);
     }
 
@@ -43,28 +46,19 @@ function loadCalendarioMensal() {
         let indiceIgualHoje = i === diaHoje && mes === mesHoje && ano === anoHoje;
 
         diasCalendario.innerHTML = `
-            <div style="
-                width: 30px;
-                height: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: auto;
-                border-radius: 50%;
-                ${indiceIgualHoje ? 'border: 2px solid #150A35; background-color: #150A35; color: white' : ''}
-            ">
-                ${i}
-            </div>
-        `;
+            <div style=" width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; font-size: 12px; ${indiceIgualHoje ? 'border: 2px solid #150A35; background-color: #150A35; color: white' : ''}
+            ">${i}</div>`;
+
         blocosCalendario.appendChild(diasCalendario);
     }
 
     for (let i = 0; i < difDiasProxMes; i++) {
         let proximoMes = document.createElement('div');
         proximoMes.classList.add('cardDiaCalendario');
-        proximoMes.innerHTML = `<div style="color: gray">${i + 1}</div>`
+        proximoMes.innerHTML = `<div style="color: gray; width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; font-size: 12px;">${i + 1}</div>`
         blocosCalendario.appendChild(proximoMes);
     }
+    cabecalhoNomesDiaSemana()
 }
 
 function loadCalendarioSemanal() {
@@ -107,19 +101,24 @@ function loadCalendarioSemanal() {
         `;
         blocosCalendario.appendChild(div);
     }
+    cabecalhoNomesDiaSemana()
 }
 
 /* MANTER OU NAO MANTER A VISUALIZAÇÃO POR DIA??? */
 
 function loadCalendarioDiario() {
     const canva = document.getElementById("canvaCalendario");
+
     canva.innerHTML = "";
+    canva.style.gridTemplateColumns = "repeat(7, 1fr)";
+    canva.style.gridTemplateRows = "1fr";
 
     const div = document.createElement("div");
     div.classList.add("cardDiaCalendario");
     div.style.fontSize = "32px";
     div.innerText = dataAtualCalendario.getDate();
     canva.appendChild(div);
+    cabecalhoNomesDiaSemana()
 }
 
 /* Controle dos botões usadas para alterar entre os meses */
@@ -144,8 +143,6 @@ function atualizarCalendario() {
         loadCalendarioDiario();
     }
 }
-
-atualizarCalendario();
 
 document.getElementById("hoje").addEventListener("click", () => {
     dataAtualCalendario = new Date();
@@ -211,5 +208,29 @@ function atualizarBotaoCalendario(visualizacaoAtual) {
         botaoSemanal.classList.add("esconderBotao");
     } else if (modoVisualizacao === "dia") {
         botaoDia.classList.add("esconderBotao");
+    }
+}
+
+const nomesDiasSemana = ["Dom.", "Seg.", "Ter.", "Qua.", "Qui.", "Sex.", "Sáb."];
+
+function cabecalhoNomesDiaSemana() {
+    let cabecalhoCalendario = document.getElementById("cabecalhoCalendario");
+    cabecalhoCalendario.innerHTML = "";
+
+    if (modoVisualizacao === "dia") {
+        // Mostra apenas o dia da semana atual
+        const i = dataAtualCalendario.getDay();
+        const diaDiv = document.createElement("div");
+        diaDiv.classList.add("cardCabecalhoCalendario");
+        diaDiv.textContent = nomesDiasSemana[i];
+        cabecalhoCalendario.appendChild(diaDiv);
+    } else {
+        // Mostra todos os dias
+        for (let i = 0; i < nomesDiasSemana.length; i++) {
+            const diaDiv = document.createElement("div");
+            diaDiv.classList.add("cardCabecalhoCalendario");
+            diaDiv.textContent = nomesDiasSemana[i];
+            cabecalhoCalendario.appendChild(diaDiv);
+        }
     }
 }
