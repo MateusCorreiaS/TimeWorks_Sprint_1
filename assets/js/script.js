@@ -2,7 +2,7 @@
 
 let modoVisualizacao = "mes";
 document.addEventListener("DOMContentLoaded", () => {
-    atualizarCalendario(); 
+    atualizarCalendario();
 });
 
 atualizarBotaoCalendario(modoVisualizacao);
@@ -110,12 +110,12 @@ function loadCalendarioDiario() {
     const canva = document.getElementById("canvaCalendario");
 
     canva.innerHTML = "";
-    canva.style.gridTemplateColumns = "repeat(7, 1fr)";
+    canva.style.gridTemplateColumns = "1fr";
     canva.style.gridTemplateRows = "1fr";
 
     const div = document.createElement("div");
     div.classList.add("cardDiaCalendario");
-    div.style.fontSize = "32px";
+    div.style.fontSize = "15px";
     div.innerText = dataAtualCalendario.getDate();
     canva.appendChild(div);
     cabecalhoNomesDiaSemana()
@@ -218,16 +218,21 @@ function cabecalhoNomesDiaSemana() {
     cabecalhoCalendario.innerHTML = "";
 
     if (modoVisualizacao === "dia") {
-        // Mostra apenas o dia da semana atual
         const i = dataAtualCalendario.getDay();
         const diaDiv = document.createElement("div");
+
+        cabecalhoCalendario.style.gridTemplateColumns = "1fr";
+
         diaDiv.classList.add("cardCabecalhoCalendario");
         diaDiv.textContent = nomesDiasSemana[i];
         cabecalhoCalendario.appendChild(diaDiv);
     } else {
-        // Mostra todos os dias
+
         for (let i = 0; i < nomesDiasSemana.length; i++) {
             const diaDiv = document.createElement("div");
+
+            cabecalhoCalendario.style.gridTemplateColumns = "repeat(7, 1fr)";
+
             diaDiv.classList.add("cardCabecalhoCalendario");
             diaDiv.textContent = nomesDiasSemana[i];
             cabecalhoCalendario.appendChild(diaDiv);
