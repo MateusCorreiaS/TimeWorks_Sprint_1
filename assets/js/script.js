@@ -1,6 +1,6 @@
 /* Função que usei para carregar o calendário sempre que o HTML for carregado. */
 
-let modoVisualizacao = "mes";
+let modoVisualizacao = "dia";
 document.addEventListener("DOMContentLoaded", () => {
     atualizarCalendario();
 });
@@ -16,8 +16,6 @@ let anoHoje = dataHoje.getFullYear();
 function loadCalendarioMensal() {
     let blocosCalendario = document.getElementById("canvaCalendario");
 
-    blocosCalendario.innerHTML = ``;
-
     let ano = dataAtualCalendario.getFullYear();
     let mes = dataAtualCalendario.getMonth();
 
@@ -31,6 +29,8 @@ function loadCalendarioMensal() {
 
     blocosCalendario.style.gridTemplateColumns = "repeat(7, 1fr)";
     blocosCalendario.style.gridTemplateRows = "repeat(6, 1fr)";
+
+    blocosCalendario.innerHTML = ``;
 
     for (let i = primerioDiaMes - 1; i >= 0; i--) {
         let diaAnterior = document.createElement('div');
@@ -46,7 +46,7 @@ function loadCalendarioMensal() {
         let indiceIgualHoje = i === diaHoje && mes === mesHoje && ano === anoHoje;
 
         diasCalendario.innerHTML = `
-            <div style=" width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; font-size: 12px; ${indiceIgualHoje ? 'border: 2px solid #150A35; background-color: #150A35; color: white' : ''}
+            <div style=" width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; font-size: 12px; ${indiceIgualHoje ? 'background-color: #150A35; color: white' : ''}
             ">${i}</div>`;
 
         blocosCalendario.appendChild(diasCalendario);
@@ -86,19 +86,7 @@ function loadCalendarioSemanal() {
         blocosCalendario.style.gridTemplateRows = "1fr";
 
         div.innerHTML = `
-            <div style="
-                width: 30px;
-                height: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: auto;
-                border-radius: 50%;
-                ${indiceIgualHoje ? 'border: 2px solid #150A35; background-color: #150A35; color: white' : ''}
-            ">
-                ${dia}
-            </div>
-        `;
+            <div style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; ${indiceIgualHoje ? 'background-color: #150A35; color: white' : ''} ">${dia}</div>`;
         blocosCalendario.appendChild(div);
     }
     cabecalhoNomesDiaSemana()
@@ -111,14 +99,56 @@ function loadCalendarioDiario() {
 
     canva.innerHTML = "";
     canva.style.gridTemplateColumns = "1fr";
-    canva.style.gridTemplateRows = "1fr";
+    canva.style.gridTemplateRows = "auto";
 
     const div = document.createElement("div");
     div.classList.add("cardDiaCalendario");
-    div.style.fontSize = "15px";
-    div.innerText = dataAtualCalendario.getDate();
+
+    const header = document.createElement("div");
+    header.style.cssText = `
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border-radius: 50%;
+        background-color: #150A35;
+        color: white;
+        font-size: 12px;
+    `;
+    header.textContent = dataAtualCalendario.getDate();
+    div.appendChild(header);
+
+
+    const horasContainer = document.createElement("div");
+    horasContainer.style.cssText = `
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    `;
+
+    for (let i = 0; i < 24; i++) {
+        const hora = document.createElement("div");
+        hora.style.cssText = `
+            padding: 6px 10px;
+            border-top: 1px dotted #150A35;
+            font-size: 14px;
+            text-align: start;
+            font-size: 10px;
+            color: gray;
+        `;
+        hora.textContent = `${i.toString().padStart(2, '0')}:00`;
+        horasContainer.appendChild(hora);
+    }
+
+    // Adiciona o container de horas dentro da mesma div do dia
+    div.appendChild(horasContainer);
+
+    // Insere tudo no calendário
     canva.appendChild(div);
-    cabecalhoNomesDiaSemana()
+
+    cabecalhoNomesDiaSemana();
 }
 
 /* Controle dos botões usadas para alterar entre os meses */
