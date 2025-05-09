@@ -1,55 +1,61 @@
-.card-body {
-    font-size: 10px;
 
+.card-body, .card-heading {
+    margin: 0;
+    padding: 0px 0;
 }
 
-h3 {
+.card-body { /*Descrição de cada conquista*/
     font-size: 10px;
 }
 
-.card-container {
+h3 { /*Título do card de conquista*/
+    font-size: 12px;
+}
+
+
+.card-container { /*Container que os cards que conquista estão inseridos*/
     display: grid;
     background: aqua;
     width: 250px;
     height: 50px;   
     width: 10%;
     max-width: 300px;
-
-
 }
-
+/*Corpo dos cards de conquita*/
 .card {
-    width: 200px; /* Largura aumentada */
-    height: 60px; /* Altura aumentada */
-    padding: 8px;
+    width: 200px;
+    height: 60px;
+    padding: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    background: #ff4444;
+    background: #dda0dd;
     transition: all 0.3s ease;
 }
-
+/*Comportamento do card quando passamos o mouse em cima dele*/
 .card:hover {
-    background: #4466ff;
+    background: #9a639a;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .card-body, .card-heading {
-    font-size: 12px;
     margin: 0;
-    padding: 2px 0;
+    padding: 0px 0;
 }
-/* Container dos cards */
+/* Container dos cards
+Permite alterar a posição dos cards dentro do popup
+Permite editar funções técnicas dos cards 
+*/
 .card-container {
     position: absolute;
     bottom: 10px;
-    left: 50%;
+    left: 50%; /*Afasta os cards horizontalmente tomando como base o lado esquerdo do popup*/
     transform: translateX(-50%);
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /*Define a exibição dos cards como vertical com rolagem*/
+    gap: 10px; /*Espaçamento entre cada card */
     max-height: 120px;
     overflow-y: auto;
-    padding: 10px;
+    padding: 50px; /*Move o card para cima ou para baixo dentro do popup */
     width: 80%;
     align-items: center;
-    background: none; /* Remove o fundo aqua */
+    background: none;
 }
