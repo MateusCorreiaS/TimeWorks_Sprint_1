@@ -65,12 +65,20 @@ function loadCalendarioSemanal() {
     let blocosCalendario = document.getElementById("canvaCalendario");
     blocosCalendario.innerHTML = "";
 
-    let diaSemana = dataAtualCalendario.getDay(); // aqui eu descubro a posiação (0,1,2,3..) do DIA DA SEMANA da data atual (ex: 05/05/2025 é o '1') 
-    let inicioSemana = new Date(dataAtualCalendario); // copio o controle da data atual para não alterar no geral e afetar outras configurações
-    inicioSemana.setDate(inicioSemana.getDate() - diaSemana); // e aqui eu defino o valor da data de 'inicioSemana' a fim de encontrar o domingo (dia de indice '0') da semana atual
+    // Adicionar classe para visualização semanal
+    blocosCalendario.classList.add("visualizacao-semanal");
 
+    let diaSemana = dataAtualCalendario.getDay();
+    let inicioSemana = new Date(dataAtualCalendario);
+    inicioSemana.setDate(inicioSemana.getDate() - diaSemana);
+
+    // Configurar o grid para a estrutura semanal
+    blocosCalendario.style.gridTemplateColumns = "repeat(7, 1fr)";
+    blocosCalendario.style.gridTemplateRows = "auto repeat(24, 1fr)";
+
+    // Criar cabeçalho com dias da semana
     for (let i = 0; i < 7; i++) {
-        let diaInicioSemana = new Date(inicioSemana.getTime()); // não faço ideia de por que assim funcionou
+        let diaInicioSemana = new Date(inicioSemana.getTime());
         diaInicioSemana.setDate(inicioSemana.getDate() + i);
 
         let dia = diaInicioSemana.getDate();
@@ -80,60 +88,102 @@ function loadCalendarioSemanal() {
         let indiceIgualHoje = dia === diaHoje && mes === mesHoje && ano === anoHoje;
 
         let div = document.createElement("div");
-        div.classList.add("cardDiaCalendario");
-
-        blocosCalendario.style.gridTemplateColumns = "repeat(7, 1fr)";
-        blocosCalendario.style.gridTemplateRows = "1fr";
+        div.classList.add("cardDiaCalendario", "cabecalho-dia");
 
         div.innerHTML = `
-            <div style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; ${indiceIgualHoje ? 'background-color: #150A35; color: white' : ''} ">${dia}</div>`;
+            <div style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; margin: auto; border-radius: 50%; ${indiceIgualHoje ? 'background-color: #150A35; color: white' : ''}">${dia}</div>`;
+
         blocosCalendario.appendChild(div);
     }
-    cabecalhoNomesDiaSemana()
+
+    // Adicionar células para cada hora do dia para cada dia da semana
+    for (let hora = 0; hora < 24; hora++) {
+        for (let dia = 0; dia < 7; dia++) {
+            let diaAtual = new Date(inicioSemana.getTime());
+            diaAtual.setDate(inicioSemana.getDate() + dia);
+            diaAtual.setHours(hora, 0, 0, 0);
+
+            let celulaHora = document.createElement("div");
+            celulaHora.classList.add("celula-hora");
+
+            // Formatação da hora e adição como atributo de dados
+            let horaFormatada = hora.toString().padStart(2, '0') + ":00";
+            celulaHora.dataset.hora = horaFormatada;
+            celulaHora.dataset.data = `${diaAtual.getFullYear()}-${(diaAtual.getMonth() + 1).toString().padStart(2, '0')}-${diaAtual.getDate().toString().padStart(2, '0')}`;
+
+            // Mostrar hora apenas na primeira coluna
+            if (dia === 0) {
+                celulaHora.innerHTML = `<div class="indicador-hora">${horaFormatada}</div>`;
+            }
+
+            // Verificar se é o dia atual
+            if (diaAtual.getDate() === diaHoje &&
+                diaAtual.getMonth() === mesHoje &&
+                diaAtual.getFullYear() === anoHoje) {
+                celulaHora.style.borderLeft = "2px solid #150A35";
+
+                // Se for a hora atual, destaque
+                let horaAtual = new Date().getHours();
+                if (hora === horaAtual) {
+                    celulaHora.style.backgroundColor = "#e6e6ff";
+                    celulaHora.style.borderTop = "2px solid #150A35";
+                    celulaHora.style.borderBottom = "2px solid #150A35";
+                }
+            }
+
+            blocosCalendario.appendChild(celulaHora);
+        }
+    }
+
+    cabecalhoNomesDiaSemana();
 }
 
-/* MANTER OU NAO MANTER A VISUALIZAÇÃO POR DIA??? */
-
 function loadCalendarioDiario() {
+    let dia = dataAtualCalendario.getDate();
+    let mes = dataAtualCalendario.getMonth();
+    let ano = dataAtualCalendario.getFullYear();
+
+    let indiceIgualHoje = dia === diaHoje && mes === mesHoje && ano === anoHoje;
+
     const canva = document.getElementById("canvaCalendario");
 
     canva.innerHTML = "";
     canva.style.gridTemplateColumns = "1fr";
-    canva.style.gridTemplateRows = "auto";
 
-    const div = document.createElement("div");
-    div.classList.add("cardDiaCalendario");
-    
-    const header = document.createElement("div");
-    header.style.cssText = `
-        width: 20px;
-        height: 20px;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
-        border-radius: 50%;
-        background-color: #150A35;
-        color: white;
-        font-size: 12px;
+    // Definir o grid para comportar cabeçalho + 24 horas em frações iguais
+    canva.style.gridTemplateRows = "auto repeat(24, 1fr)";
+
+    // Remover qualquer overflow ou classe de visualização específica
+    canva.style.overflow = "hidden";
+    canva.classList.remove("visualizacao-semanal");
+
+    // Adicionar classe para visualização diária
+    canva.classList.add("visualizacao-diaria");
+
+    // Criar o cabeçalho do dia
+    const headerDiv = document.createElement("div");
+    headerDiv.classList.add("cabecalho-dia-diario");
+
+    headerDiv.innerHTML = `
+                <div class="numero-dia-diario" style="${indiceIgualHoje ? 'background-color: #150A35; color: white;' : ''}">${dia}</div>
     `;
-    header.textContent = dataAtualCalendario.getDate();
-    div.appendChild(header);
 
+    canva.appendChild(headerDiv);
+
+    // Criar as células de hora
     for (let i = 0; i < 24; i++) {
-        const hora = document.createElement("div");
-        hora.style.cssText = `
-            padding: 6px 10px;
-            border-top: 1px dotted #150A35;
-            text-align: start;
-            font-size: 12px;
-            color: gray;
-        `;
-        hora.textContent = `${i.toString().padStart(2, '0')}:00`;
-        div.appendChild(hora);
-    }
+        const horaDiv = document.createElement("div");
+        horaDiv.classList.add("celula-hora-diaria");
 
-    // Insere tudo no calendário
-    canva.appendChild(div);
+        // Adicionar atributos de dados para consistência com a visualização semana
+        const horaFormatada = i.toString().padStart(2, '0') + ":00";
+        horaDiv.dataset.hora = horaFormatada;
+        horaDiv.dataset.data = `${ano}-${(mes + 1).toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+
+        horaDiv.innerHTML = `<span class="indicador-hora-diaria">${horaFormatada}</span>`;
+
+        canva.appendChild(horaDiv);
+    }
 
     cabecalhoNomesDiaSemana();
 }
