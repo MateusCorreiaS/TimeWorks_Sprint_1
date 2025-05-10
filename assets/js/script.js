@@ -103,12 +103,11 @@ function loadCalendarioDiario() {
 
     const div = document.createElement("div");
     div.classList.add("cardDiaCalendario");
-
+    
     const header = document.createElement("div");
     header.style.cssText = `
         width: 20px;
         height: 20px;
-        display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto;
@@ -120,30 +119,18 @@ function loadCalendarioDiario() {
     header.textContent = dataAtualCalendario.getDate();
     div.appendChild(header);
 
-
-    const horasContainer = document.createElement("div");
-    horasContainer.style.cssText = `
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    `;
-
     for (let i = 0; i < 24; i++) {
         const hora = document.createElement("div");
         hora.style.cssText = `
             padding: 6px 10px;
             border-top: 1px dotted #150A35;
-            font-size: 14px;
             text-align: start;
-            font-size: 10px;
+            font-size: 12px;
             color: gray;
         `;
         hora.textContent = `${i.toString().padStart(2, '0')}:00`;
-        horasContainer.appendChild(hora);
+        div.appendChild(hora);
     }
-
-    // Adiciona o container de horas dentro da mesma div do dia
-    div.appendChild(horasContainer);
 
     // Insere tudo no calendário
     canva.appendChild(div);
