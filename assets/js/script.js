@@ -1,31 +1,30 @@
 /* Função que usei para carregar o calendário sempre que o HTML for carregado. */
 
+let tarefas = {}; //tive que mudar a ordem das declarações pq tava dando erro
 let modoVisualizacao = "mes";
-document.addEventListener("DOMContentLoaded", loadCalendarioMensal)
-atualizarBotaoCalendario(modoVisualizacao);
 let dataAtualCalendario = new Date();
-
 let dataHoje = new Date();
 let diaHoje = dataHoje.getDate();
 let mesHoje = dataHoje.getMonth();
 let anoHoje = dataHoje.getFullYear();
 
+document.addEventListener("DOMContentLoaded", loadCalendarioMensal);
+atualizarBotaoCalendario(modoVisualizacao);
+
+
 function loadCalendarioMensal() {
     let blocosCalendario = document.getElementById("canvaCalendario");
-
     blocosCalendario.innerHTML = ``;
 
     let ano = dataAtualCalendario.getFullYear();
     let mes = dataAtualCalendario.getMonth();
 
-    let quantidadeDiasMesAtual = new Date(ano, mes + 1, 0).getDate(); // Aqui descobri a quant de dia nos mês atual. Quando passamos no parametro de 'dia' da função Date o numero '0' ele tras o ultimo dia do mes anterior
-
+    let quantidadeDiasMesAtual = new Date(ano, mes + 1, 0).getDate();
     let primerioDiaMes = new Date(ano, mes, 1).getDay();
-
     let diasMesAnterior = new Date(ano, mes, 0).getDate();
-
     let difDiasProxMes = 42 - quantidadeDiasMesAtual - primerioDiaMes;
 
+    // Dias do mês anterior
     for (let i = primerioDiaMes - 1; i >= 0; i--) {
         let diaAnterior = document.createElement('div');
         diaAnterior.classList.add('cardDiaCalendario');
@@ -33,11 +32,15 @@ function loadCalendarioMensal() {
         blocosCalendario.appendChild(diaAnterior);
     }
 
+    // Dias do mês atual
     for (let i = 1; i <= quantidadeDiasMesAtual; i++) {
         let diasCalendario = document.createElement('div');
-        diasCalendario.classList.add('cardDiaCalendario');
+        diasCalendario.classList.add('cardDiaCalendario', 'dia');
 
         let indiceIgualHoje = i === diaHoje && mes === mesHoje && ano === anoHoje;
+        let dataFormatada = `${ano}-${String(mes + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+
+        diasCalendario.setAttribute("data-dia", dataFormatada);
 
         diasCalendario.innerHTML = `
             <div style="
@@ -53,17 +56,22 @@ function loadCalendarioMensal() {
                 ${i}
             </div>
         `;
-        blocosCalendario.appendChild(diasCalendario);
+
+        blocosCalendario.appendChild(diasCalendario); 
     }
 
+    // Dias do próximo mês
     for (let i = 0; i < difDiasProxMes; i++) {
         let proximoMes = document.createElement('div');
         proximoMes.classList.add('cardDiaCalendario');
-        proximoMes.innerHTML = `<div style="color: gray">${i + 1}</div>`
+        proximoMes.innerHTML = `<div style="color: gray">${i + 1}</div>`;
         blocosCalendario.appendChild(proximoMes);
     }
-    adicionarEventosDiasCalendario()
+
+    adicionarEventosDiasCalendario();
+    renderizarTarefas();
 }
+
 
 function loadCalendarioSemanal() {
     let blocosCalendario = document.getElementById("canvaCalendario");
@@ -190,7 +198,7 @@ document.getElementById("botaoCalendarioMes").addEventListener("click", () => {
     atualizarBotaoCalendario(modoVisualizacao);
 })
 
-/* Sumir botões daa visualização semanal mensal e diario*/
+/* Sumir botões das visualização semanal mensal e diario*/
 
 function atualizarBotaoCalendario(visualizacaoAtual) {
     let botaoMes = document.getElementById("botaoCalendarioMes");
@@ -210,19 +218,11 @@ function atualizarBotaoCalendario(visualizacaoAtual) {
     }
 }
 
-let tarefas = {}; // Armazenamento simples no JS por enquanto
-
 // Adiciona evento de clique nos dias após o calendário ser carregado
 function adicionarEventosDiasCalendario() {
-    document.querySelectorAll(".cardDiaCalendario").forEach((diaElemento, index) => {
-
+    document.querySelectorAll(".cardDiaCalendario[data-dia]").forEach(diaElemento => {
         diaElemento.addEventListener("click", () => {
-            
-            const dia = diaElemento.innerText.trim();
-            const mes = dataAtualCalendario.getMonth() + 1;
-            const ano = dataAtualCalendario.getFullYear();
-
-            const dataFormatada = `${ano}-${String(mes).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
+            const dataFormatada = diaElemento.getAttribute("data-dia");
             document.getElementById("dataSelecionada").value = dataFormatada;
 
             const modal = new bootstrap.Modal(document.getElementById('modalTarefa'));
@@ -231,29 +231,69 @@ function adicionarEventosDiasCalendario() {
     });
 }
 
+
 // Recria os dias com as tarefas após atualização
 function renderizarTarefas() {
-    const blocos = document.querySelectorAll(".cardDiaCalendario");
-    blocos.forEach((diaElemento) => {
-        const numeroDia = diaElemento.innerText.trim();
-        const mes = dataAtualCalendario.getMonth() + 1;
-        const ano = dataAtualCalendario.getFullYear();
+    document.querySelectorAll(".tarefa-no-calendario").forEach(el => el.remove());
 
-        const dataChave = `${ano}-${String(mes).padStart(2, '0')}-${String(numeroDia).padStart(2, '0')}`;
+    for (const data in tarefas) {
+        const tarefasDoDia = tarefas[data];
+        const diaElement = document.querySelector(`.cardDiaCalendario[data-dia='${data}']`);
 
-        if (tarefas[dataChave]) {
-            tarefas[dataChave].forEach(tarefa => {
-                const divTarefa = document.createElement('div');
-                divTarefa.classList.add(`tarefa-${tarefa.prioridade}`);
-                divTarefa.textContent = tarefa.titulo;
-                diaElemento.appendChild(divTarefa);
+        if (diaElement) {
+            tarefasDoDia.forEach((tarefa, index) => {
+                const div = document.createElement("div");
+                div.classList.add("tarefa-no-calendario");
+
+                // Cor por prioridade
+                switch (tarefa.prioridade) {
+                    case "alta":
+                    case "muito alta":
+                        div.style.backgroundColor = "#f44336"; break;
+                    case "media":
+                        div.style.backgroundColor = "#ffeb3b";
+                        div.style.color = "#000"; break;
+                    default:
+                        div.style.backgroundColor = "#4caf50"; break;
+                }
+
+                div.style.marginTop = "4px";
+                div.style.padding = "2px 4px";
+                div.style.borderRadius = "4px";
+                div.style.fontSize = "12px";
+                div.textContent = tarefa.titulo;
+
+                // Tornar tarefa clicável para edição
+                div.addEventListener("click", (e) => {
+                    e.stopPropagation(); // Impedir propagação para o dia
+
+                    document.getElementById("dataSelecionada").value = data;
+                    document.getElementById("tituloTarefa").value = tarefa.titulo;
+                    document.getElementById("descricaoTarefa").value = tarefa.descricao;
+                    document.getElementById("prioridadeTarefa").value = tarefa.prioridade;
+
+                    // Guardar o índice atual
+                    document.getElementById("formTarefa").dataset.editIndex = index;
+
+                    // Mostrar os botões de edição e exclusão
+                    document.getElementById("botaoSalvar").style.display = "none";
+                    document.getElementById("botaoEditar").style.display = "inline-block";
+                    document.getElementById("botaoExcluir").style.display = "inline-block";
+
+                    // Exibir o modal
+                    const modal = new bootstrap.Modal(document.getElementById('modalTarefa'));
+                    modal.show();
+                });
+
+                diaElement.appendChild(div);
             });
         }
-    });
+    }
 }
 
-// Submissão do formulário
-document.getElementById("formTarefa").addEventListener("submit", function (e) {
+// Submissão do formulário para inserir nova tarefa
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("formTarefa").addEventListener("submit", function (e) {
     e.preventDefault();
     const data = document.getElementById("dataSelecionada").value;
     const titulo = document.getElementById("tituloTarefa").value;
@@ -263,25 +303,71 @@ document.getElementById("formTarefa").addEventListener("submit", function (e) {
     const novaTarefa = { titulo, descricao, prioridade };
 
     if (!tarefas[data]) {
-        tarefas[data] = [];
+      tarefas[data] = [];
     }
     tarefas[data].push(novaTarefa);
 
-    // Atualiza calendário
     atualizarCalendario();
-
-    // Fecha modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('modalTarefa'));
     modal.hide();
-
-    // Limpa o formulário
     e.target.reset();
+  });
 });
 
-// Intercepta o carregamento do calendário e injeta os eventos
-const originalLoadMensal = loadCalendarioMensal;
-loadCalendarioMensal = function () {
-    originalLoadMensal();
-    renderizarTarefas();
-    adicionarEventosDiasCalendario();
-};
+//editar
+document.getElementById("botaoEditar").addEventListener("click", () => {
+    const data = document.getElementById("dataSelecionada").value;
+    const titulo = document.getElementById("tituloTarefa").value;
+    const descricao = document.getElementById("descricaoTarefa").value;
+    const prioridade = document.getElementById("prioridadeTarefa").value;
+    const index = document.getElementById("formTarefa").dataset.editIndex;
+
+    if (tarefas[data] && tarefas[data][index] !== undefined) {
+        tarefas[data][index] = { titulo, descricao, prioridade };
+
+        // Re-renderizar o calendário
+        renderizarTarefas();
+
+        // Fechar o modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalTarefa'));
+        modal.hide();
+    }
+});
+
+//excluir
+document.getElementById("botaoExcluir").addEventListener("click", () => {
+    const data = document.getElementById("dataSelecionada").value;
+    const index = document.getElementById("formTarefa").dataset.editIndex;
+
+    if (tarefas[data] && tarefas[data][index] !== undefined) {
+        tarefas[data].splice(index, 1);  // Remove a tarefa
+
+        // Re-renderizar o calendário
+        renderizarTarefas();
+
+        // Fechar o modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalTarefa'));
+        modal.hide();
+    }
+});
+
+
+
+// Função para limpar o estado do formulário
+function limparEstadoFormulario() {
+  document.getElementById("formTarefa").reset();
+  delete document.getElementById("formTarefa").dataset.editIndex;
+
+  // Esconder os botões de edição e exclusão, mostrar o de salvar
+  document.getElementById("botaoSalvar").style.display = "inline-block";
+  document.getElementById("botaoEditar").style.display = "none";
+  document.getElementById("botaoExcluir").style.display = "none";
+}
+
+// Função para atualizar o calendário
+function atualizarCalendario() {
+  renderizarTarefas();
+  // Se necessário, pode adicionar lógica extra aqui para atualizar o mês ou a visualização
+}
+
+console.log("Tarefas salvas:", tarefas);
