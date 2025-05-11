@@ -222,3 +222,247 @@ aside div {
 .hora-noturna {
     background-color: #f5f5f7;
 }
+
+/* Estilos globais */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: #150A35;
+    height: 60px;
+}
+
+header img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+header button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+header button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.esconderBotao {
+    visibility: hidden;
+}
+
+/* Estilos da barra lateral */
+aside {
+    width: 250px;
+    background-color: #150A35;
+    color: white;
+}
+
+aside div {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ajustes do tamanho geral do calendário */
+main {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 110px); /* Altura ajustada para acomodar o cabeçalho e área de navegação */
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 10px; /* Espaço adicional no topo para separar do cabeçalho */
+}
+
+#cabecalhoCalendario {
+    display: grid;
+    gap: 1px;
+    background-color: #f0f0f0;
+    grid-template-columns: repeat(7, minmax(120px, 1fr)); /* 7 colunas iguais às do canvas */
+}
+
+.cardCabecalhoCalendario {
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    background-color: white;
+}
+
+#canvaCalendario {
+    flex-grow: 1;
+    display: grid;
+    gap: 1px;
+    background-color: #f0f0f0;
+    overflow: auto;
+    height: calc(100vh - 170px); /* Altura ajustada para considerar navegação e cabeçalho */
+    grid-template-rows: repeat(6, minmax(80px, 1fr)); /* 6 linhas com altura mínima */
+    grid-template-columns: repeat(7, minmax(120px, 1fr)); /* 7 colunas com largura mínima */
+}
+
+
+.cardDiaCalendario {
+    background-color: white;
+    min-height: 100px; /* Altura mínima um pouco maior para cada célula */
+    padding: 5px;
+    position: relative;
+    overflow: hidden; /* Para controlar o transbordamento do conteúdo */
+}
+
+/* Estilos para visualização diária e semanal */
+.celula-hora-diaria {
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 30px;
+    padding: 2px 5px;
+    position: relative;
+}
+
+.indicador-hora-diaria {
+    font-size: 12px;
+    color: #666;
+    position: absolute;
+    left: 5px;
+    top: 2px;
+}
+
+.visualizacao-diaria .celula-hora-diaria {
+    height: 60px;
+}
+
+.visualizacao-semanal .celula-hora-diaria {
+    height: 40px;
+}
+
+.cabecalho-dia-diario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.numero-dia-diario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Estilos para tarefas */
+.tarefa-evento {
+    padding: 2px 5px;
+    margin: 2px 0;
+    border-radius: 3px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.tarefa-evento:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Estilos para o modal de tarefas */
+.modal-content {
+    border-radius: 8px;
+    border: none;
+}
+
+.modal-header {
+    background-color: #150A35;
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #150A35;
+    box-shadow: 0 0 0 0.25rem rgba(21, 10, 53, 0.25);
+}
+
+.btn-primary {
+    background-color: #150A35;
+    border-color: #150A35;
+}
+
+.btn-primary:hover {
+    background-color: #2a1761;
+    border-color: #2a1761;
+}
+
+/* Estilo para prioridades */
+.prioridade-muito-alta {
+    background-color: #B71C1C;
+}
+
+.prioridade-alta {
+    background-color: #F44336;
+}
+
+.prioridade-media {
+    background-color: #d5c000;
+}
+
+.prioridade-baixa {
+    background-color: #4CAF50;
+}
+
+.prioridade-muito-baixa {
+    background-color: #8BC34A;
+}
+
+/* Estilos para tarefas realizadas */
+.tarefa-realizada {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    aside {
+        width: 100%;
+        max-height: 150px;
+        overflow-y: auto;
+    }
+    
+    .flex-grow-1.d-flex {
+        flex-direction: column;
+    }
+    
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+    
+    header nav {
+        margin: 10px 0;
+    }
+}
+
+/*Ajuste para o contêiner principal */
+.container-fluid {
+    padding: 0; /* Remove o padding padrão do container-fluid */
+}
+
