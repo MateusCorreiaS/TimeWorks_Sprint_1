@@ -26,14 +26,18 @@ body {
     border-radius: 25px;
 }
 
-.app-name {
-    background: linear-gradient(90deg, #7f00ff, #e100ff);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-right: 15px;
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 999;
+    pointer-events: none;
 }
+
 
 .btn-add {
     background-color: black;
@@ -41,15 +45,15 @@ body {
     border: none;
     border-radius: 6px;
     padding: 8px 16px;
-    margin-left: 14px;
-    margin-right: 15px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
     font-weight: bold;
     height: 60px;
     width: 130px;
-
 }
 
 .btn-add::before {
@@ -65,7 +69,9 @@ body {
     border: 2px solid black;
     background-color: transparent;
     position: relative;
+    z-index: 1000;
     cursor: pointer;
+
 }
 
 .toggle::before {
@@ -76,30 +82,28 @@ body {
     border-radius: 50%;
     position: absolute;
     top: 3px;
-    right: 4px;
-    transition: right 0.3s;
+    left: 3px;
+    transition: left 0.3s;
 }
 
 .toggle.active::before {
-    right: 21px;
+    left: 27px;
 }
-
 
 .todo-container {
     background-color: #4f4f4f;
-    margin: 20px;
     padding: 20px;
     border-radius: 10px;
-    width: 1500px;
+    width: 90%;
     position: absolute;
-    right: 0px;
+    margin-top: 20px;
     top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Centraliza horizontalmente */
     height: auto;
-    z-index: 1000;
-
+    z-index: 1001;
 }
-
-
 
 .todo-container h2,
 .todo-container h3 {
@@ -129,30 +133,6 @@ li {
 
 .completed .task-checkbox:checked::after {
     text-decoration: none;
-}
-
-
-.divider {
-    width: 100%;
-    height: 2px;
-    background-color: rgb(182, 182, 182);
-    border: none;
-    margin-top: 10px;
-    margin-left: 305px;
-    border-radius: 4%;
-
-}
-
-
-.divider-vertical {
-    position: fixed;
-    top: 115px;
-    left: 305px;
-    width: 2px;
-    height: calc(100vh - 100px);
-    background-color: rgb(182, 182, 182);
-    z-index: 1;
-    border-radius: 4%;
 }
 
 .options {
@@ -189,4 +169,233 @@ li {
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
+}
+
+#task-name {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 90%
+}
+
+#confirm-task {
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 5px;
+    display: wrap;
+}
+
+#cancel-task {
+    background-color: #f44336;
+    color: white;
+    display: wrap;
+
+}
+
+.edit-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.task-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.save-btn,
+.cancel-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.save-btn {
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 10px;
+
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.titulotodolist {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 1.7rem;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.edit-options {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 60px;
+}
+
+.options {
+    position: relative;
+}
+
+/* Layout tablet */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    body {
+        font-size: 1.5rem;
+    }
+
+    .todo-container {
+        width: 85%;
+        top: 110px;
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    li {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1.5rem;
+
+
+    }
+
+    .options {
+        font-size: 1.5rem;
+    }
+
+    .edit-options {
+        right: 60px;
+    }
+
+    #task-name {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+        width: 83%;
+        font-size: 1.5rem;
+    }
+
+    .edit-input {
+        font-size: 1.5rem;
+    }
+
+    #confirm-task {
+        background-color: #4CAF50;
+        color: white;
+        margin-right: 3px;
+        width: 50px;
+        height: 50px;
+    }
+
+    #cancel-task {
+        background-color: #f44336;
+        color: white;
+        width: 50px;
+        height: 50px;
+    }
+
+    .edit-task {
+        gap: 10px;
+        position: absolute;
+        top: -20px;
+        right: 60px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .delete-task {
+        gap: 10px;
+        position: absolute;
+        top: -20px;
+        right: 0px;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+
+}
+
+/* Layout celular */
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 1.3rem;
+    }
+
+    .todo-container {
+        top: 100px;
+        padding: 15px;
+    }
+
+    li {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .edit-options {
+        position: static;
+        margin-top: 5px;
+    }
+
+    #task-name {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+        width: 83%;
+        font-size: 1.5rem;
+    }
+
+    .edit-input {
+        font-size: 1rem;
+    }
+
+    #confirm-task {
+        background-color: #4CAF50;
+        color: white;
+        margin-right: 3px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #cancel-task {
+        background-color: #f44336;
+        color: white;
+        width: 40px;
+        height: 40px;
+
+    }
+
+    .edit-input {
+        width: 60%;
+        max-width: 250px;
+        padding: 6px;
+        font-size: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .save-btn,.cancel-btn {
+        height: 40px;
+        font-size: 1rem;
+        position: relative;
+    }
 }
