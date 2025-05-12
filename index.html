@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/styles.css"> 
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/cards.css">
     <link rel="stylesheet" href="assets/css/botaodeeditar.css">
     <title>popup perfil</title>
@@ -25,19 +25,19 @@
                         class="edit-btn-img"></button>
             </div>
 
-            <hader>
-                <div id="alinharbotaoclose">
-                    <button class="buttonclose"> <img src="/img/close25px.png" alt="closebtn" class="btnc"></button>
-                </div>
-            </hader>
-            <nav>
-                <div class="menutxt">
-                    <p class="username">Usuário-teste</p>
-                    <p class="userid">#000000</p>
-                    <p class="userlevel">Lv100</p><br>
-                </div>
 
-            </nav>
+            <div id="alinharbotaoclose">
+                <button class="buttonclose"> <img src="/img/close25px.png" alt="closebtn" class="btnc"></button>
+            </div>
+
+
+            <div class="menutxt">
+                <p class="username">Usuário-teste</p>
+                <p class="userid">#000000</p>
+                <p class="userlevel">Lv100</p><br>
+            </div>
+
+
             <section>
                 <div id="menu">
                     <div class="imgperfildiv">
@@ -54,26 +54,27 @@
             <!--Popup de edição de perfil -->
             <div id="edit-modal" class="edit-modal">
                 <div class="edit-modal-content">
-                    <span class="close-edit-modal"><img src="img/close25px.png" alt="Fecha Página de edição"> </img></span>
-<h2>Editar Perfil</h2>
+                    <span class="close-edit-modal"><img src="img/close25px.png" alt="Fecha Página de edição">
+                        </img></span>
+                    <h2>Editar Perfil</h2>
 
-        <div class="form-group">
-            <label for="username-input">Nome de Usuário:</label>
-            <input type="text" id="username-input" class="edit-input">
-        </div>
+                    <div class="form-group">
+                        <label for="username-input">Nome de Usuário:</label>
+                        <input type="text" id="username-input" class="edit-input">
+                    </div>
 
-        <div class="form-group">
-            <label>Escolha sua foto de perfil:</label>
-            <div class="profile-pic-options">
-                <img src="img/man.png" alt="Profile 1" class="profile-option" data-value="img/man.png">
-                <img src="img/man.png" alt="Profile 2" class="profile-option" data-value="img/man.png">
-                <img src="img/man.png" alt="Profile 3" class="profile-option" data-value="img/man.png">
+                    <div class="form-group">
+                        <label>Escolha sua foto de perfil:</label>
+                        <div class="profile-pic-options">
+                            <img src="img/man.png" alt="Profile 1" class="profile-option" data-value="img/man.png">
+                            <img src="img/man.png" alt="Profile 2" class="profile-option" data-value="img/man.png">
+                            <img src="img/man.png" alt="Profile 3" class="profile-option" data-value="img/man.png">
+                        </div>
+                    </div>
+
+                    <button id="save-changes-btn">Salvar Alterações</button>
+                </div>
             </div>
-        </div>
-
-        <button id="save-changes-btn">Salvar Alterações</button>
-    </div>
-</div>
 
         </dialog>
         <script src="assets/js/botaodeeditar.js"></script>
