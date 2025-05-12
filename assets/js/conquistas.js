@@ -1,24 +1,39 @@
-//Os cards de conquistas são inseridos por este javascript que puxa dos dados do conquistas.json
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('assets/js/conquistas.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('conquistas-container');
+    // Dados hardcoded como fallback
+    const conquistasData = {
+        "conquistas": [
+            {
+                "id": 1,
+                "conquista": "2 SEMANAS",
+                "descrição": "concluindo com sucesso uma tarefa recorrente de prioridade MUITO ALTA"
+            },
+            {
+                "id": 2,
+                "conquista": "2 SEMANAS",
+                "descrição": "concluindo com sucesso uma tarefa de prioridade ALTA"
+            },
+            {
+                "id": 3,
+                "conquista": "1 MÊS",
+                "descrição": "concluindo com sucesso uma tarefa de prioridade MUITO ALTA"
+            }
+        ]
+    };
 
-            data.conquistas.forEach(conquista => {
-                const card = document.createElement('div');
-                card.className = 'card';
+    const container = document.getElementById('conquistas-container');
 
-                card.innerHTML = `
-                    <img src="img/conquista.png" alt="Ícone Conquista" class="card-image">
-                    <div class="card-content">
-                        <p class="card-heading">${conquista.conquista}</p>
-                        <p class="card-body">${conquista.descrição}</p>
-                    </div>
-                `;
+    conquistasData.conquistas.forEach(conquista => {
+        const card = document.createElement('div');
+        card.className = 'card';
 
-                container.appendChild(card);
-            });
-        })
-        .catch(error => console.error('Erro ao carregar conquistas:', error));
+        card.innerHTML = `
+            <img src="img/conquista.png" alt="Ícone Conquista" class="card-image">
+            <div class="card-content">
+                <p class="card-heading">${conquista.conquista}</p>
+                <p class="card-body">${conquista.descrição}</p>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
 });
