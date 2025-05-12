@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Dados hardcoded como fallback
     const conquistasData = {
         "conquistas": [
             {
