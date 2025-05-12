@@ -20,8 +20,8 @@ dialog {
     height: 250px;
     border: 2px solid black;
     border-radius: 10px;
-    position: relative; /* Para posicionamento absoluto dos filhos */
-    padding-bottom: 10px; /* Espaço para os cards */
+    position: relative; 
+    padding-bottom: 10px; 
 }
 
 #menu {
@@ -29,64 +29,65 @@ dialog {
     display: inline-flex;
     justify-content: flex-start;
 }
-/* Estilo para a área de informações do usuário */
+/* Edita a área de informações do usuário */
 .menutxt {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 20px !important;
+    margin-top: 5px !important; 
+margin-left: 30%;
 }
 
-/* Container do botão de fechar */
+/* Edita o botão de fechar */
 #alinharbotaoclose {
     display: flex;
-    justify-content: flex-end; /* Alinha o conteúdo à direita */
-    width: 100%;
+    justify-content: flex-end;
     padding: 20px;
-    position: absolute; /* Posicionamento absoluto */
-    top: 0;
-    right: 0;
+    position: absolute;
+    top: -10px;
+    right: 0px;
 }
 
 .imgperfil {
     width: 150px;
     height: 100%;
 }
+
 .imgperfildiv {
     display: inline-flex;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-right: 0px;
     justify-content: flex-start;
     box-shadow: gray 0px 30px 0px;
     border-radius: 100%;
-    }
+    position: relative;
+}
 
 .username {
-    color: red;
+    font-size: 20px;
+    color: black;
     text-align: center;
 }
 
 .userlevel {
-    color: rgb(68, 0, 255);
-
-    
+    font-size: 20px;
+    color: black;
 }
 
 .userid {
-    color: rgb(0, 255, 64);
-    padding-left: 10px;
-    padding-right: 10px;
+    font-size: 20px;
+    color: black;
 }
 
-/*Edita o botão X que fecha o popup da página de perfil.*/
+/*Edita o botão X que fecha o popup da página de perfil*/
 .buttonclose {
     max-width: 10px;
     background: none;
     border: none;
 }
 
-/*Edita especificamente a imagem X e suas propriedades.*/
+/*Edita especificamente a imagem X e suas propriedades*/
 .buttonclose .btnc {
     width: 15px;
     background-color: transparent;
@@ -97,8 +98,14 @@ dialog {
     transition: 0.2s;
 }
 
-/* Remove margens extras */
 .userid, .username, .userlevel {
     margin: 0;
     white-space: nowrap;
+}
+.edit-modal-content {
+    text-align: center;
+}
+
+.edit-input {
+    text-align: center;
 }

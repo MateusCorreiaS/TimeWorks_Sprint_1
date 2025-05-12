@@ -1,14 +1,17 @@
-const button = document.querySelector("button");
-const modal = document.querySelector("dialog");
+document.addEventListener('DOMContentLoaded', function() {
+  const openModalBtn = document.querySelector(".openmodal");
+  const modal = document.querySelector("dialog");
+  const closeModalBtn = document.querySelector(".buttonclose");
 
-button.onclick = function () {
-  modal.showModal();
-}
+  // Abre o popup
+  openModalBtn.addEventListener('click', () => {
+      modal.showModal();
+  });
 
-const buttonClose = modal.querySelector("button");
-buttonClose.onclick = function () {
-  modal.close();
-}
-
+  // Fecha o popup
+  closeModalBtn.addEventListener('click', () => {
+      modal.close();
+  });
+});
 
 

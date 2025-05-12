@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="botaodeeditar.css">
     <title>popup perfil</title>
 </head>
 
@@ -15,10 +16,16 @@
     <button class="openmodal"> <img src="img/man.png" alt="opnmodal" class="openmodalimg"> </button>
 
 
-    <!--A caixa dialog abre uma janela que se comporta como um popup (e é classificada como modal? [preciso conferir essa parte depois para entender como o dialog se comunica com o "modal"])-->
+    <!--A caixa dialog abre uma janela que se comporta como um popup -->
     <div class="container">
 
         <dialog>
+            <!-- Botão que abre a caixa de editar perfil -->
+            <div class="profile-edit">
+                <button id="edit-profile-btn"><img src="img/edit.jpeg" alt="Editar Perfil"
+                        class="edit-btn-img"></button>
+            </div>
+
             <hader>
                 <div id="alinharbotaoclose">
                     <button class="buttonclose"> <img src="img/close25px.png" alt="closebtn" class="btnc"></button>
@@ -28,8 +35,9 @@
                 <div class="menutxt">
                     <p class="username">Usuário-teste</p>
                     <p class="userid">#000000</p>
-                    <p class="userlevel">Lv100</p>
+                    <p class="userlevel">Lv100</p><br>
                 </div>
+
             </nav>
             <section>
                 <div id="menu">
@@ -40,29 +48,38 @@
 
             <!-- Cards de conquistas dentro do popup -->
             <aside>
-
-                <div class="card-container">
-                    <div class="card">
-                        <h3 class="card-heading">Conquista 1</h3>
-                        <p class="card-body">Descrição da conquista 1</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-heading">Conquista 2</h3>
-                        <p class="card-body">Descrição da conquista 2</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-heading">Conquista 3</h3>
-                        <p class="card-body">Descrição da conquista 3</p>
-                    </div>
-                    <script src="cards.js"></script>
+                <div class="card-container" id="conquistas-container">
                 </div>
-
             </aside>
 
+            <!--Popup de edição de perfil -->
+            <div id="edit-modal" class="edit-modal">
+                <div class="edit-modal-content">
+                    <span class="close-edit-modal"><img src="img/close25px.png" alt="Fecha Página de edição"> </img></span>
+<h2>Editar Perfil</h2>
+
+        <div class="form-group">
+            <label for="username-input">Nome de Usuário:</label>
+            <input type="text" id="username-input" class="edit-input">
+        </div>
+
+        <div class="form-group">
+            <label>Escolha sua foto de perfil:</label>
+            <div class="profile-pic-options">
+                <img src="img/man.png" alt="Profile 1" class="profile-option" data-value="img/man.png">
+                <img src="img/man.png" alt="Profile 2" class="profile-option" data-value="img/man.png">
+                <img src="img/man.png" alt="Profile 3" class="profile-option" data-value="img/man.png">
+            </div>
+        </div>
+
+        <button id="save-changes-btn">Salvar Alterações</button>
+    </div>
+</div>
 
         </dialog>
+        <script src="botaodeeditar.js"></script>
         <script src="index.js"></script>
-
+        <script src="conquistas.js"></script>
     </div>
     </div>
 
