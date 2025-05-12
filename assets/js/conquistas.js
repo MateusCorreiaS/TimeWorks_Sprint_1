@@ -1,6 +1,6 @@
 //Os cards de conquistas são inseridos por este javascript que puxa dos dados do conquistas.json
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('conquistas.json')
+    fetch('assets/js/conquistas.json')
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('conquistas-container');
