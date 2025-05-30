@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         : {
             name: "Usuário-teste",
             id: "#000000",
-            level: "Lv100",
-            profilePic: "img/man.png"
+            profilePic: "img/man.png",                                    
         };
 
     // Elementos do DOM
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Elementos de exibição
     const usernameDisplay = document.querySelector('.username');
     const useridDisplay = document.querySelector('.userid');
-    const userlevelDisplay = document.querySelector('.userlevel');
     const profileImg = document.querySelector('.imgperfil');
     const openModalImg = document.querySelector('.openmodalimg');
 
@@ -27,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateProfileDisplay() {
         usernameDisplay.textContent = userData.name;
         useridDisplay.textContent = userData.id;
-        userlevelDisplay.textContent = userData.level;
         profileImg.src = userData.profilePic;
         openModalImg.src = userData.profilePic;
     }

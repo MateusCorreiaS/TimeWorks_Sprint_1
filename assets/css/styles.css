@@ -20,8 +20,8 @@ dialog {
     height: 250px;
     border: 2px solid black;
     border-radius: 10px;
-    position: relative; 
-    padding-bottom: 10px; 
+    position: relative;
+    padding-bottom: 10px;
 }
 
 #menu {
@@ -29,14 +29,15 @@ dialog {
     display: inline-flex;
     justify-content: flex-start;
 }
+
 /* Edita a área de informações do usuário */
 .menutxt {
     display: flex;
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 5px !important; 
-margin-left: 30%;
+    margin-top: 5px !important;
+    margin-left: 30%;
 }
 
 /* Edita o botão de fechar */
@@ -56,7 +57,7 @@ margin-left: 30%;
 
 .imgperfildiv {
     display: inline-flex;
-    margin-top: 0px;
+    margin-top: -50px;
     margin-right: 0px;
     justify-content: flex-start;
     box-shadow: gray 0px 30px 0px;
@@ -98,14 +99,27 @@ margin-left: 30%;
     transition: 0.2s;
 }
 
-.userid, .username, .userlevel {
+.userid,
+.username,
+.userlevel {
     margin: 0;
     white-space: nowrap;
 }
+
 .edit-modal-content {
     text-align: center;
+
 }
 
 .edit-input {
     text-align: center;
+}
+
+
+.xpbarclass {
+    width: 150px;
+    display: inline-flex;
+    margin-top: 0px;
+    margin-right: 0px;
+    justify-content: flex-start;
 }

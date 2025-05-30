@@ -32,9 +32,11 @@
 
 
             <div class="menutxt">
-                <p class="username">Usuário-teste</p>
-                <p class="userid">#000000</p>
-                <p class="userlevel">Lv100</p><br>
+                <p class="username">User-teste</p>
+                <p class="userid">#00000</p>
+                <p class="userlevel"><span id="userlevel">0</span></p><br>
+                <p class="userxp">0</p>
+                <div class="xpbarimage"><img src="img/xp0.png" alt="xpbar" class="xpbarclass"></div>
             </div>
 
 
@@ -77,10 +79,14 @@
             </div>
 
         </dialog>
+
+        <!-- Botão que induz a adição de pontos de exp ao usuário -->
+        <button id="complete-task-btn">Completar Tarefa (+10 XP)</button>
+
         <script src="assets/js/botaodeeditar.js"></script>
         <script src="assets/js/index.js"></script>
         <script src="assets/js/conquistas.js"></script>
-        <script src="assets/js/conquistas.json"></script>
+        <script src="assets/js/level.js"></script>
     </div>
     </div>
 
