@@ -1,44 +1,143 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <title>Time Works</title>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+          crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="assets/css/styles.css">
+     <title>Time Works</title>
 </head>
-
-<body class="d-flex flex-column vh-100 m-0">
-
-    <header class="d-flex text-white p-3">
-        <div class="d-flex">
-            <img src="assets/img/logo.png">
-            <div>Time Works</div>
-        </div>
-    </header>
-
-    <div class="flex-grow-1 d-flex">
-
-        <aside class="p-3">
-            <div class="p-2 rounded">
-                Tarefas concluídas em sequência:
-            </div>
-
-            <div class="p-2 my-2 rounded">
-                Tarefas com prioridade: "Muito alta"
-            </div>
-        </aside>
-
-        <!-- Dentro da main alternaremos a visualização dos calendários mensais, semanais, diário e To do list-->
-
-        <main class="flex-grow-1 p-3 m-2 rounded">
-            Main<br>alternaremos a visualização dos calendários mensais, semanais, diário e To do list
-        </main>
-
-    </div>
+<body class="d-flex flex-column vh-100 m-0 ">
+     <header class="d-flex text-white p-2 align-items-center ">
+          <div class="d-flex">
+               <img src="assets/img/logo.png">
+               <div>Time Works</div>
+          </div>
+          <nav class="d-flex gap-2 h-100">
+               <button class="text-white" id="voltar">&lt;</button>
+               <p id="mesAtual"></p>
+               <button class="text-white" id="avancar">&gt;</button>
+               <button class="text-white " id="hoje">Hoje</button>
+          </nav>
+          <div class="d-flex flex-column gap-1 ms-1 h-100">
+               <button class="text-white" id="botaoCalendarioMes">Mês</button>
+               <button class="text-white" id="botaoCalendarioSemanal">Semana</button>
+               <button class="text-white" id="botaoCalendarioDia">Dia</button>
+          </div>
+     </header>
+     <div class="flex-grow-1 d-flex">
+          <aside class="p-3">
+               <div class="p-2 rounded text-white">
+                    Tarefas concluídas em sequência:
+               </div>
+               <div class="p-2 my-2 rounded text-white">
+                    Tarefas com prioridade: "Muito alta"
+               </div>
+          </aside>
+          <!-- Dentro da main alternaremos a visualização dos calendários mensais, semanais, diário e To do list-->
+          <main class="d-flex flex-grow-1 p-2 m-2 rounded flex-column">
+               <div>
+                    <div id="cabecalhoCalendario"></div>
+               </div>
+               <div id="canvaCalendario"></div>
+          </main>
+     </div>
+     <!-- TUTORIAL!  -->
+     <div id="abrirUmaVez">
+          <!--serve para funcionar os botoes -->
+          <div class="sidebar-actions">
+               <button id="open-welcome">
+          </div>
+          <!-- Card de boas-vindas -->
+          <div class="welcome-overlay active" id="welcome-overlay">
+               <div class="welcome-card">
+                    <div class="close-welcome" id="close-welcome"></div>
+                    <div class="welcome-content">
+                         <h2>Bem-vindo ao Site</h2>
+                         <p>Este é o seu primeiro acesso. Deseja fazer um tour pelas funcionalidades?</p>
+                         <div class="welcome-buttons">
+                              <button id="start-tutorial" class="btn">Iniciar Tutorial</button>
+                              <button id="skip-welcome" class="btn btn-skip">Pular</button>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- Overlay do tutorial -->
+          <div class="tutorial-overlay" id="tutorial-overlay">
+               <div class="tutorial-carousel">
+                    <div class="close-tutorial" id="close-tutorial"></div>
+                    <div class="carousel-slides">
+                         <!-- Slide 1 -->
+                         <div class="slide active">
+                              <div class="slide-image">
+                                   <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE2Y2Y3IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjNGE2Y2Y3Ii8+PHRleHQgeD0iMTUwIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNnB4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UGFzc28gMTwvdGV4dD48L3N2Zz4="
+                                        alt="Passo 1">
+                              </div>
+                              <div class="slide-content">
+                                   <h3>Bem-vindo ao Tutorial</h3>
+                                   <p>Este é o primeiro passo do nosso tutorial. Vamos guiá-lo através das principais
+                                        funcionalidades do site.</p>
+                              </div>
+                         </div>
+                         <!-- Slide 2 -->
+                         <div class="slide">
+                              <div class="slide-image">
+                                   <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE2Y2Y3IiBvcGFjaXR5PSIwLjMiLz48cmVjdCB4PSI3MCIgeT0iNTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTAwIiBmaWxsPSIjNGE2Y2Y3Ii8+PHRleHQgeD0iMTUwIiB5PSIxMDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNnB4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UGFzc28gMjwvdGV4dD48L3N2Zz4="
+                                        alt="Passo 2">
+                              </div>
+                              <div class="slide-content">
+                                   <h3>Explorando o Dashboard</h3>
+                                   <p>Nesta seção, você aprenderá a navegar pelo dashboard e entender os principais
+                                        indicadores.</p>
+                              </div>
+                         </div>
+                         <!-- Slide 3 -->
+                         <div class="slide">
+                              <div class="slide-image">
+                                   <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE2Y2Y3IiBvcGFjaXR5PSIwLjMiLz48cG9seWdvbiBwb2ludHM9IjE1MCw1MCAyMDAsMTUwIDEwMCwxNTAiIGZpbGw9IiM0YTZjZjciLz48dGV4dCB4PSIxNTAiIHk9IjEzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2cHgiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QYXNzbyAzPC90ZXh0Pjwvc3ZnPg=="
+                                        alt="Passo 3">
+                              </div>
+                              <div class="slide-content">
+                                   <h3>Personalização</h3>
+                                   <p>Aprenda a personalizar suas configurações para melhorar sua experiência de uso.
+                                   </p>
+                              </div>
+                         </div>
+                         <!-- Slide 4 -->
+                         <div class="slide">
+                              <div class="slide-image">
+                                   <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGE2Y2Y3IiBvcGFjaXR5PSIwLjMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNTAsIDEwMCkiPjxjaXJjbGUgcj0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRhNmNmNyIgc3Ryb2tlLXdpZHRoPSI4Ii8+PGxpbmUgeDE9IjAiIHkxPSItMjAiIHgyPSIwIiB5Mj0iLTUiIHN0cm9rZT0iIzRhNmNmNyIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIxNSIgeTI9IjE1IiBzdHJva2U9IiM0YTZjZjciIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9nPjx0ZXh0IHg9IjE1MCIgeT0iMTcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTZweCIgZmlsbD0iIzRhNmNmNyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UGFzc28gNDwvdGV4dD48L3N2Zz4="
+                                        alt="Passo 4">
+                              </div>
+                              <div class="slide-content">
+                                   <h3>Pronto para Começar!</h3>
+                                   <p>Parabéns! Você completou o tutorial e está pronto para explorar o site.</p>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="carousel-controls">
+                         <div class="carousel-dots">
+                              <div class="dot active" data-index="0"></div>
+                              <div class="dot" data-index="1"></div>
+                              <div class="dot" data-index="2"></div>
+                              <div class="dot" data-index="3"></div>
+                         </div>
+                         <div class="carousel-buttons">
+                              <button class="btn btn-prev" id="prev-btn" disabled>Anterior</button>
+                              <button class="btn" id="next-btn">Próximo</button>
+                              <button class="btn btn-skip" id="skip-btn">Pular Tutorial</button>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+     <!-- FIM DO TUTORIAL -->
+     <script src="assets/js/app.js"></script>
+     <script src="assets/js/script.js"></script>
+     <script src="assets/js/tutorial.js"></script>
 </body>
+</html>
