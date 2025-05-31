@@ -9,6 +9,7 @@ const tarefas = [
         "descricao": "Prova que realizarei na minha escola",
         "realizada": true,
         "exp": 0.5,
+        "sequencia": null
     },
     {
         "id": 2,
@@ -20,6 +21,7 @@ const tarefas = [
         "descricao": "Entregar apresentação sobre a Revolução Francesa",
         "realizada": false,
         "exp": 0.5,
+        "sequencia": null
     },
     {
         "id": 3,
@@ -31,6 +33,7 @@ const tarefas = [
         "descricao": "Sessão de revisão para a prova prática",
         "realizada": false,
         "exp": 0.5,
+        "sequencia": 3
     },
     {
         "id": 4,
@@ -38,10 +41,11 @@ const tarefas = [
         "data": "2025-05-13",
         "hora": "07:00:00Z",
         "prioridade": "Muito baixa",
-        "recorrencia": "Não repete",
+        "recorrencia": "Diário",
         "descricao": "Passear com o cachorro",
         "realizada": false,
         "exp": 0.5,
+        "sequencia": 13
     },
     {
         "id": 5,
@@ -53,5 +57,6 @@ const tarefas = [
         "descricao": "Médico no centro",
         "realizada": false,
         "exp": 0.5,
+        "sequencia": null
     }
 ];

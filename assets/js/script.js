@@ -408,7 +408,6 @@ function renderizarTarefas() {
     });
 }
 
-// Função auxiliar para adicionar uma tarefa a uma célula (para visualizações diária e semanal)
 function adicionarTarefaNaCelula(celula, tarefa, corPrioridade, estiloRealizada) {
     const dataTarefa = new Date(tarefa.data + 'T' + tarefa.hora.replace('Z', ''));
     const horaTarefa = dataTarefa.getHours();
@@ -444,15 +443,12 @@ function adicionarTarefaNaCelula(celula, tarefa, corPrioridade, estiloRealizada)
 
 }
 
-
-// Atualizar as funções do calendário para chamar renderizarTarefas após renderizar o calendário
 const atualizarCalendarioOriginal = atualizarCalendario;
 atualizarCalendario = function () {
     atualizarCalendarioOriginal();
     renderizarTarefas();
 };
 
-// Adicionar estilos CSS para as tarefas
 const estilosTarefas = document.createElement('style');
 estilosTarefas.textContent = `
     .tarefa-evento {
@@ -461,7 +457,7 @@ estilosTarefas.textContent = `
         border-radius: 3px;
         color: white;
         font-size: 12px;
-        cursor: pointer;
+        cursor: pointer; 
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -546,5 +542,5 @@ estilosTarefas.textContent = `
 `;
 document.head.appendChild(estilosTarefas);
 
-// Chamar renderizarTarefas para exibir as tarefas já existentes
 renderizarTarefas();
+

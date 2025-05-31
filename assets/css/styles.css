@@ -150,16 +150,14 @@ aside div {
 }
 
 
-/* Estilo para visualização diária */
 .visualizacao-diaria {
-    height: 100%; /* Usa toda a altura disponível */
+    height: 100%; 
     display: grid;
-    grid-template-rows: auto repeat(24, minmax(0, 1fr)); /* Auto para o cabeçalho, distribuir igualmente o espaço restante */
-    overflow: hidden !important; /* Previne barra de rolagem */
+    grid-template-rows: auto repeat(24, minmax(0, 1fr)); 
+    overflow: hidden !important;
     background-color: whitesmoke;
 }
 
-/* Cabeçalho do dia na visualização diária */
 .cabecalho-dia-diario {
     display: flex;
     flex-direction: column;
@@ -188,7 +186,6 @@ aside div {
     font-size: 14px;
 }
 
-/* Células de hora na visualização diária */
 .celula-hora-diaria {
     border-left: solid 0.1rem #150A35;
     border-right: solid 0.1rem #150A35;
@@ -200,21 +197,19 @@ aside div {
     align-items: center;
 }
 
-/* Indicador de hora na visualização diária */
 .indicador-hora-diaria {
     font-size: 0.8rem;
     color: #666;
     font-weight: normal;
 }
 
-/* Estilo para hora atual */
+
 .hora-atual {
     background-color: #e6e6ff !important;
     border-left: 2px solid #150A35 !important;
     border-right: 2px solid #150A35 !important;
 }
 
-/* Estilos para diferentes períodos do dia */
 .hora-comercial {
     background-color: #f9f9f9;
 }
