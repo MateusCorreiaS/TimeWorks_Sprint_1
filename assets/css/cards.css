@@ -49,12 +49,12 @@
 
 .card-container {
     position: absolute;
-    bottom: 20%;
+    bottom: 0%;
     right: 8%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    max-height: 550px;
+    max-height: 180px;
     overflow-y: auto;
     padding: 5px;
 }

@@ -71,7 +71,7 @@ dialog {
     text-align: center;
 }
 
-.userlevel {
+#userlevel {
     font-size: 20px;
     color: black;
 }
@@ -80,7 +80,10 @@ dialog {
     font-size: 20px;
     color: black;
 }
-
+.userxp {
+    font-size: 20px;
+    color: black;
+}   
 /*Edita o botão X que fecha o popup da página de perfil*/
 .buttonclose {
     max-width: 10px;
@@ -101,7 +104,7 @@ dialog {
 
 .userid,
 .username,
-.userlevel {
+#userlevel {
     margin: 0;
     white-space: nowrap;
 }
@@ -116,10 +119,21 @@ dialog {
 }
 
 
+.xpbarimage {
+    display: inline-flex;
+    width: 150px;
+    margin-top: 50px;
+    position: absolute;
+    inset-inline-start: 50%;
+}
+
+.xpbartext {
+    position: absolute; 
+    color: black;
+    inset-inline-start: 160px;
+}   
+
 .xpbarclass {
     width: 150px;
-    display: inline-flex;
-    margin-top: 0px;
-    margin-right: 0px;
-    justify-content: flex-start;
+
 }

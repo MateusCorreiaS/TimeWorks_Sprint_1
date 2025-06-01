@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/cards.css">
     <link rel="stylesheet" href="assets/css/botaodeeditar.css">
-    <title>popup perfil</title>
+    <title>Popup perfil</title>
 </head>
 
 <body>
@@ -32,11 +32,12 @@
 
 
             <div class="menutxt">
-                <p class="username">User-teste</p>
+                <p class="username">Usuário-teste</p>
                 <p class="userid">#00000</p>
-                <p class="userlevel"><span id="userlevel">0</span></p><br>
-                <p class="userxp">0</p>
-                <div class="xpbarimage"><img src="img/xp0.png" alt="xpbar" class="xpbarclass"></div>
+                <p id="userlevel">>Nível: 0</p>
+                <p class="userxp">XP: 0</p>
+                <div class="xpbarimage"><img src="img/xp0.png" alt="xpbar" class="xpbarclass">
+                </div>
             </div>
 
 
@@ -81,8 +82,13 @@
         </dialog>
 
         <!-- Botão que induz a adição de pontos de exp ao usuário -->
-        <button id="complete-task-btn">Completar Tarefa (+10 XP)</button>
-
+        <button id="setxp">Receber XP</button>
+        <p class="xpforapopup"></p>
+        <p class="nvforapopup"></p>
+        <p class="userxp"></p>
+        <button id="conquistarandom">Receber conquista aleatória</button>
+        <p>(Botões de adicionar XP e conquistas aleatórias inseridos manualmente porque o funcionamento completo depende
+            de partes de outros integrantes. Etapa a ser feita na próxia sprint. Ao clicar em ambos os botões, abra o popup clicando na imagem na foto de perfil para verificar as alterações.)</p>
         <script src="assets/js/botaodeeditar.js"></script>
         <script src="assets/js/index.js"></script>
         <script src="assets/js/conquistas.js"></script>
