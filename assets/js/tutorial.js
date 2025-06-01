@@ -1,3 +1,6 @@
+/* ------- Se voce quiser que o tutorial apareca novamente no console,
+ execute esse comando e recarregue a página: localStorage.clear();
+--------*/
 document.addEventListener('DOMContentLoaded', function () {
      // Elementos do DOM
      const welcomeOverlay = document.getElementById('welcome-overlay');
@@ -19,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
      // salva o tutorial como visto no local storage
      function salvarTutorialComoVisto() {
           localStorage.setItem('tutorialShown', 'true');
-          console.log('tutorialShown definido como true'); // avisa no console que foi ativado a funcao
      }
      function openWelcome() {
           welcomeOverlay.classList.add('active');
