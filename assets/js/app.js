@@ -58,5 +58,29 @@ const tarefas = [
         "realizada": false,
         "exp": 0.5,
         "sequencia": null
+    },
+    {
+        "id": 6,
+        "titulo": "Pagar contas",
+        "data": "2025-05-31",
+        "hora": "09:30:00Z",
+        "prioridade": "Muito alta",
+        "recorrencia": "Mensal",
+        "descricao": "Pagar contas do mês",
+        "realizada": false,
+        "exp": 0.5,
+        "sequencia": 32
+    },
+    {
+        "id": 7,
+        "titulo": "Abastecer",
+        "data": "2025-05-01",
+        "hora": "07:42:34Z",
+        "prioridade": "Média",
+        "recorrencia": "Semanal",
+        "descricao": "Abastecer o carro",
+        "realizada": false,
+        "exp": 0.5,
+        "sequencia": 25
     }
 ];
