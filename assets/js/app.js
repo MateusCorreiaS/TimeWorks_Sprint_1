@@ -25,6 +25,66 @@ const tarefas = [
     },
     {
         "id": 3,
+        "titulo": "Ir ao médico",
+        "data": "2025-05-12",
+        "hora": "15:00:00Z",
+        "prioridade": "Baixa",
+        "recorrencia": "Não repete",
+        "descricao": "Consulta médica no centro",
+        "realizada": false,
+        "exp": 0.5,
+        "sequencia": null
+    },
+    {
+        "id": 4,
+        "titulo": "Entrevista de estágio",
+        "data": "2025-06-01",
+        "hora": "10:00:00Z",
+        "prioridade": "Alta",
+        "recorrencia": "Não repete",
+        "descricao": "Entrevista na empresa Tech Jr.",
+        "realizada": false,
+        "exp": 1,
+        "sequencia": null
+    },
+    {
+        "id": 5,
+        "titulo": "Consulta odontológica",
+        "data": "2025-06-03",
+        "hora": "13:00:00Z",
+        "prioridade": "Média",
+        "recorrencia": "Não repete",
+        "descricao": "Limpeza dos dentes",
+        "realizada": false,
+        "exp": 0.4,
+        "sequencia": null
+    },
+    {
+        "id": 6,
+        "titulo": "Reunião de grupo",
+        "data": "2025-06-04",
+        "hora": "16:00:00Z",
+        "prioridade": "Alta",
+        "recorrencia": "Não repete",
+        "descricao": "Planejar apresentação de biologia",
+        "realizada": false,
+        "exp": 0.6,
+        "sequencia": null
+    },
+    {
+        "id": 7,
+        "titulo": "Organizar armário",
+        "data": "2025-06-05",
+        "hora": "17:00:00Z",
+        "prioridade": "Muito baixa",
+        "recorrencia": "Não repete",
+        "descricao": "Limpeza e organização do quarto",
+        "realizada": false,
+        "exp": 0.3,
+        "sequencia": null
+    },
+    {
+        "id": 8,
         "titulo": "Revisão de Física",
         "data": "2025-05-10",
         "hora": "09:00:00Z",
@@ -36,7 +96,7 @@ const tarefas = [
         "sequencia": 3
     },
     {
-        "id": 4,
+        "id": 9,
         "titulo": "Passear com cachorro",
         "data": "2025-05-13",
         "hora": "07:00:00Z",
@@ -48,19 +108,7 @@ const tarefas = [
         "sequencia": 13
     },
     {
-        "id": 5,
-        "titulo": "Ir ao médico",
-        "data": "2025-05-12",
-        "hora": "15:00:00Z",
-        "prioridade": "Baixa",
-        "recorrencia": "Não repete",
-        "descricao": "Médico no centro",
-        "realizada": false,
-        "exp": 0.5,
-        "sequencia": null
-    },
-    {
-        "id": 6,
+        "id": 10,
         "titulo": "Pagar contas",
         "data": "2025-05-31",
         "hora": "09:30:00Z",
@@ -72,7 +120,7 @@ const tarefas = [
         "sequencia": 32
     },
     {
-        "id": 7,
+        "id": 11,
         "titulo": "Abastecer",
         "data": "2025-05-01",
         "hora": "07:42:34Z",
@@ -82,5 +130,41 @@ const tarefas = [
         "realizada": false,
         "exp": 0.5,
         "sequencia": 25
+    },
+    {
+        "id": 12,
+        "titulo": "Estudo de Inglês",
+        "data": "2025-06-01",
+        "hora": "18:00:00Z",
+        "prioridade": "Alta",
+        "recorrencia": "Semanal",
+        "descricao": "Aula de inglês via app",
+        "realizada": false,
+        "exp": 0.6,
+        "sequencia": 8
+    },
+    {
+        "id": 13,
+        "titulo": "Academia",
+        "data": "2025-06-01",
+        "hora": "07:00:00Z",
+        "prioridade": "Alta",
+        "recorrencia": "Diário",
+        "descricao": "Treino funcional matinal",
+        "realizada": false,
+        "exp": 0.7,
+        "sequencia": 15
+    },
+    {
+        "id": 14,
+        "titulo": "Meditação",
+        "data": "2025-06-02",
+        "hora": "06:30:00Z",
+        "prioridade": "Baixa",
+        "recorrencia": "Diário",
+        "descricao": "Meditação guiada com app Calm",
+        "realizada": false,
+        "exp": 0.3,
+        "sequencia": 5
     }
 ];
