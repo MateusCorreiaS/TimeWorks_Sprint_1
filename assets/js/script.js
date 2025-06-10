@@ -302,7 +302,7 @@ function cabecalhoNomesDiaSemana() {
     }
 }
 
-// Função para renderizar tarefas no calendário - Com correção
+// Função para renderizar tarefas no calendário (tive que mudar, do outro jeito não deu certo)
 function renderizarTarefas() {
     // Limpar quaisquer tarefas previamente renderizadas
     const tarefasExistentes = document.querySelectorAll('.tarefa-evento');
@@ -346,7 +346,7 @@ function renderizarTarefas() {
                 corPrioridade = "#4CAF50"; // Verde para caso padrão
         }
 
-        // Determinar o estilo com base no status de realização
+        // Determinar o estiloocom base no status de realização
         const estiloRealizada = tarefa.realizada ? "text-decoration: line-through; opacity: 0.7;" : "";
 
         // Buscar a célula correspondente à data e hora da tarefa
@@ -905,3 +905,182 @@ atualizarCalendario = function() {
 
 // Chamar renderizarTarefas para exibir as tarefas já existentes
 renderizarTarefas();
+
+// Função para atualizar a exibição de tarefas com prioridade alta
+function atualizarTarefasPrioridadeAlta() {
+    const container = document.getElementById('tarefasPrioridadeAlta');
+    if (!container) return;
+    
+    // Filtrar tarefas com prioridade "Alta" e "Muito alta"
+    const tarefasAlta = tarefas.filter(tarefa => 
+        tarefa.prioridade === "Alta" || tarefa.prioridade === "Muito alta"
+    );
+    
+    // Limpar conteúdo anterior
+    container.innerHTML = '';
+    
+    if (tarefasAlta.length === 0) {
+        container.innerHTML = '<p class="text-muted small">Nenhuma tarefa com prioridade alta</p>';
+        return;
+    }
+    
+    // Ordenar por data e hora
+    tarefasAlta.sort((a, b) => {
+        const dataA = new Date(a.data + 'T' + a.hora);
+        const dataB = new Date(b.data + 'T' + b.hora);
+        return dataA - dataB;
+    });
+    
+    // Criar elementos para cada tarefa
+    tarefasAlta.forEach(tarefa => {
+        const tarefaElement = document.createElement('div');
+        tarefaElement.className = 'tarefa-prioridade-item';
+        tarefaElement.setAttribute('data-id-tarefa', tarefa.id);
+        
+        // Formatar data e hora
+        const dataTarefa = new Date(tarefa.data + 'T' + tarefa.hora);
+        const dataFormatada = dataTarefa.toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: '2-digit'
+        });
+        const horaFormatada = dataTarefa.toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        
+        // Determinar cor baseada na prioridade
+        const corPrioridade = tarefa.prioridade === "Muito alta" ? "#B71C1C" : "#F44336";
+        
+        // Estilo para tarefas realizadas
+        const estiloRealizada = tarefa.realizada ? "text-decoration: line-through; opacity: 0.7;" : "";
+        
+        tarefaElement.innerHTML = `
+            <div class="tarefa-prioridade-header" style="background-color: ${corPrioridade};">
+                <span class="tarefa-prioridade-badge">${tarefa.prioridade}</span>
+                <span class="tarefa-prioridade-data">${dataFormatada} ${horaFormatada}</span>
+            </div>
+            <div class="tarefa-prioridade-content">
+                <div class="tarefa-prioridade-titulo" style="${estiloRealizada}">${tarefa.titulo}</div>
+                ${tarefa.descricao ? `<div class="tarefa-prioridade-descricao">${tarefa.descricao}</div>` : ''}
+            </div>
+        `;
+        
+        // Adicionar evento de clique
+        tarefaElement.addEventListener('click', () => {
+            mostrarDetalhesTarefa(tarefa);
+        });
+        
+        container.appendChild(tarefaElement);
+    });
+}
+
+// Atualizar a função de renderização para incluir as tarefas de prioridade alta
+const atualizarCalendarioOriginal3 = atualizarCalendario;
+atualizarCalendario = function() {
+    atualizarCalendarioOriginal3();
+    setTimeout(() => {
+        atualizarTarefasPrioridadeAlta();
+    }, 100);
+};
+
+// Atualizar as tarefas de prioridade alta quando uma tarefa for salva ou excluída
+const salvarTarefaOriginal = salvarTarefa;
+salvarTarefa = function() {
+    salvarTarefaOriginal();
+    atualizarTarefasPrioridadeAlta();
+};
+
+const excluirTarefaOriginal = excluirTarefa;
+excluirTarefa = function(idTarefa) {
+    excluirTarefaOriginal(idTarefa);
+    atualizarTarefasPrioridadeAlta();
+};
+
+// Chamar a função ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        atualizarTarefasPrioridadeAlta();
+    }, 200);
+});
+
+const estilosTarefasPrioridade = document.createElement('style');
+estilosTarefasPrioridade.textContent = `
+    .tarefa-prioridade-item {
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .tarefa-prioridade-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .tarefa-prioridade-header {
+        padding: 6px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        font-size: 11px;
+        font-weight: bold;
+    }
+    
+    .tarefa-prioridade-badge {
+        background: rgba(255,255,255,0.2);
+        padding: 2px 6px;
+        border-radius: 12px;
+        font-size: 10px;
+    }
+    
+    .tarefa-prioridade-data {
+        font-size: 10px;
+        opacity: 0.9;
+    }
+    
+    .tarefa-prioridade-content {
+        padding: 8px 10px;
+    }
+    
+    .tarefa-prioridade-titulo {
+        font-weight: bold;
+        font-size: 13px;
+        color: #333;
+        margin-bottom: 4px;
+    }
+    
+    .tarefa-prioridade-descricao {
+        font-size: 11px;
+        color: #666;
+        line-height: 1.3;
+    }
+    
+    #tarefasPrioridadeAlta {
+        max-height: 200px;
+        overflow-y: auto;
+        padding-right: 5px;
+    }
+    
+    #tarefasPrioridadeAlta::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    #tarefasPrioridadeAlta::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+    
+    #tarefasPrioridadeAlta::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+    }
+    
+    #tarefasPrioridadeAlta::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+`;
+document.head.appendChild(estilosTarefasPrioridade);
